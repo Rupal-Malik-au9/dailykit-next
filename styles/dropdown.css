@@ -1,0 +1,122 @@
+.special-styling {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f8f9fa;
+  font-size: 12px;
+}
+
+.special-styling li {
+  display: block;
+  position: relative;
+  float: left;
+  background: #f8f9fa;
+  font-size: 12px;
+}
+li.dropdown ul {
+  display: none;
+  font-size: 12px;
+}
+
+.special-styling li a {
+  display: block;
+  padding: 0.4em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: black;
+  font-size: 12px;
+}
+
+li.hover:hover > ul {
+  display: block;
+  position: absolute;
+}
+
+li.hover:hover li {
+  float: none;
+}
+
+li.hover:hover a {
+  background: white;
+}
+
+li.hover:hover li a:hover {
+  background: #f2f5f9;
+}
+
+.main-navigation li ul li {
+  border-top: 0;
+}
+ul.navbar-nav ul ul {
+  left: 100%;
+  top: 0;
+}
+ul.navbar-nav:before,
+ul.navbar-nav:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+ul.navbar-nav:after {
+  clear: both;
+}
+
+.navbar-nav {
+  margin-left: 18rem;
+}
+/* .navbar-toggler>.close {
+  display:inline;
+}
+.navbar-toggler .collapsed>.close, .navbar-toggler:not(.collapsed)>.navbar-toggler-icon {
+  display:none;
+} */
+@media only screen and (max-width: 600px) {
+  .special-styling {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #f8f9fa;
+    font-size: 18px;
+  }
+  .navbar-nav {
+    margin-left: 0rem;
+  }
+  .special-styling li {
+    display: block;
+    position: relative;
+    float: bottom;
+    background: #f8f9fa;
+    font-size: 14px;
+  }
+  li.dropdown ul {
+    display: none;
+    font-size: 14px;
+  }
+  .special-styling li a {
+    display: block;
+    padding: 0.4em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: black;
+    font-size: 14px;
+  }
+  li.hover:hover > ul {
+    display: block;
+    position: relative;
+  }
+  li.hover:hover li a:hover {
+    background: white;
+  }
+
+  li.hover:hover li a:hover {
+    background: #f2f5f9;
+  }
+
+  .main-navigation li ul li {
+    border-top: 0;
+  }
+  ul.navbar-nav ul ul {
+    left: 2%;
+    top: 0;
+  }
+}

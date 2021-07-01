@@ -11,14 +11,14 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-import { Footer, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
+import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
 
 import { Layout } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
 import { useTimezones, useCurrencies } from "../../utils";
-
+import Footer from "../../components/Footer";
 export default function Company() {
   const { user } = useAuth();
   const history = useRouter();
@@ -217,10 +217,10 @@ export default function Company() {
           </section>
         </div>
       </Main>
-      <Footer>
+      <Foter>
         <span />
         <Button onClick={save}>Next</Button>
-      </Footer>
+      </Foter><div style={{marginBottom:"4rem"}}></div>
     </Layout>
   );
 };

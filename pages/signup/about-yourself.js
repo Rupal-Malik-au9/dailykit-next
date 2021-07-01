@@ -6,8 +6,8 @@ import { Layout } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_USER, UPDATE_ORGANIZATION } from "../../graphql";
-import { Footer, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
-
+import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
+import Footer from "../../components/Footer";
 export default function AboutYourself() {
   const { user } = useAuth();
   const history = useRouter();
@@ -107,10 +107,11 @@ export default function AboutYourself() {
           </section>
         </div>
       </Main>
-      <Footer>
+      <Foter>
         <Button onClick={() => history.push("/signup/company")}>Back</Button>
         <Button onClick={submit}>Next</Button>
-      </Footer>
+      </Foter><div style={{marginBottom:"4rem"}}></div>
+      <Footer />
     </Layout >
   );
 };

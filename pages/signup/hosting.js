@@ -7,8 +7,8 @@ import { Radio } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
-import { Footer, H2, H4, Main, Button } from "../../components/styled";
-
+import { Footer as Foter, H2, H4, Main, Button } from "../../components/styled";
+import Footer from "../../components/Footer";
 export default function Hosting() {
   const router = useRouter();
   const { user } = useAuth();
@@ -76,7 +76,7 @@ export default function Hosting() {
           )}
         </section>
       </Main>
-      <Footer>
+      <Foter>
         <Button onClick={() => prevPage()}>Back</Button>
         <Button
           onClick={() => nextPage()}
@@ -86,7 +86,9 @@ export default function Hosting() {
         >
           Next
         </Button>
-      </Footer>
+      </Foter>
+      <div style={{marginBottom:"4rem"}}></div>
+      <Footer/>
     </Layout>
   );
 }

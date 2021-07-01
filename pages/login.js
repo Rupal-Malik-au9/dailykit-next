@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuth } from "../store/auth";
-
+import { Layout } from "../components";
+import Footer from "../components/Footer";
 export default function Login() {
   const router = useRouter();
   const { authenticated, login } = useAuth();
@@ -46,7 +47,7 @@ export default function Login() {
     }
   };
   return (
-    <div>
+    <Layout>
       <Panel>
         <h1 className="text-2xl mb-6">Login</h1>
         <FieldSet>
@@ -83,7 +84,10 @@ export default function Login() {
         </Submit>
         {error && <Error>{error}</Error>}
       </Panel>
-    </div>
+      <div style={{marginBottom:"4rem"}}></div>
+      <Footer/>
+      </Layout>
+      
   );
 }
 
@@ -97,7 +101,7 @@ const Panel = styled.section`
   margin-right: auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  
+  margin-top: 8rem;
 `;
 
 const FieldSet = styled.fieldset`

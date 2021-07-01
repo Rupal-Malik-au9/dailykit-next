@@ -42,6 +42,7 @@ export const Main = styled.main`
    background: #ffffff;
    margin: 16px 16px 0 16px;
    border: 1px solid #ececec;
+   margin-top: 8rem;
 `
 
 export const H2 = styled.h2`

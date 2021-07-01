@@ -8,6 +8,7 @@ import { Label, Main } from "../../components/styled";
 import * as utils from "../../utils";
 import { useAuth } from "../../store/auth";
 import { ADMIN_EXISTS } from "../../graphql";
+import  Footer from "../../components/Footer";
 
 export default function Signup() {
   const router = useRouter();
@@ -78,9 +79,7 @@ export default function Signup() {
     check_email({ variables: { where: { email: { _eq: value } } } });
 
   return (
-
-    <Layout>
-
+  <Layout>
       <Main>
         <Panel>
           <h1 className="text-2xl mb-6">Register</h1>
@@ -142,6 +141,7 @@ export default function Signup() {
           )}
         </Panel>
       </Main>
+      <div style={{marginBottom:"4rem"}}></div><Footer />
     </Layout>
   );
 };

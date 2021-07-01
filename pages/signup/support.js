@@ -7,7 +7,7 @@ import {
   Info,
   Card,
   Main,
-  Footer,
+  Footer as Foter,
   Button,
   H2,
   CheckBoxWrapper,
@@ -17,7 +17,7 @@ import { useAuth } from "../../store/auth";
 import { BulbEmoji } from "../../assets/icons";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
-
+import Footer from "../../components/Footer";
 export default function Support() {
   const { user } = useAuth();
   const router = useRouter();
@@ -89,7 +89,7 @@ export default function Support() {
         </section>
 
       </Main>
-      <Footer>
+      <Foter>
         <Button onClick={() => prevPage()}>Back</Button>
         <Button
           onClick={() => nextPage()}
@@ -99,7 +99,8 @@ export default function Support() {
         >
           Next
         </Button>
-      </Footer>
+      </Foter><div style={{marginBottom:"4rem"}}></div>
+      <Footer/>
     </Layout>
   );
 }

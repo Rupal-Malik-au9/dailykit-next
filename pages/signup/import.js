@@ -6,8 +6,8 @@ import { Layout } from "../../components";
 import { Radio } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { Button, Main, Footer, Label, H2 } from "../../components/styled";
-
+import { Button, Main, Footer as Foter, Label, H2 } from "../../components/styled";
+import Footer from "../../components/Footer";
 import {
   UPDATE_ORGANIZATION,
   MARKETPLACE_COMPANIES,
@@ -149,7 +149,7 @@ export default function Import() {
           )}
         </section>
       </Main>
-      <Footer>
+      <Foter>
         <Button onClick={back}>Back</Button>
         <section className="space-x-3">
           <button onClick={next} className="btn-style-twelve bold">
@@ -159,7 +159,8 @@ export default function Import() {
             Next
           </Button>
         </section>
-      </Footer>
+      </Foter><div style={{marginBottom:"4rem"}}></div>
+      <Footer/>
     </Layout>
   );
 }

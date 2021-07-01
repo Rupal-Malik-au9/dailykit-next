@@ -8,7 +8,7 @@ import { Button, Main } from "../../components/styled";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
-
+import Footer from "../../components/Footer";
 const gif_ids = {
   launch: [
     "tXLpxypfSXvUc",
@@ -78,7 +78,8 @@ export default function FinishSetup() {
         ) : (
           <GifCycle />
         )}
-      </Main>
+      </Main><div style={{marginBottom:"4rem"}}></div>
+      <Footer/>
     </Layout>
   );
 }

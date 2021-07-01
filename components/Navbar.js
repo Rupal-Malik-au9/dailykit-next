@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 import Image from "next/image";
-export default class Navbar extends PureComponent {
-  render() {
+import { useRouter } from "next/router";
+import { useAuth } from "../store/auth";
+export const Navbar =()=> {
+    const location = useRouter();
+    const {authenticated } = useAuth();
     return (
       <nav
         className="navbar fixed-top navbar-expand-lg navbar-light bg-light"
@@ -517,9 +520,9 @@ export default class Navbar extends PureComponent {
                   Schedule Demo
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
+              {authenticated ? (
+        <li className="nav-item">
+          <a className="nav-link"
                   style={{
                     background: "#8ac03b",
                     color: "white",
@@ -530,15 +533,39 @@ export default class Navbar extends PureComponent {
                     paddingRight: "20px",
                     fontSize: "14px",
                   }}
-                  href="/signup"
+                  onClick={() => location.push("/signup")}
                 >
-                  Signup
+                  Complete your Signup
                 </a>
-              </li>
+        </li>
+      ) : (
+        <li className="nav-item">
+          {!location.pathname.includes("login") && (
+               <a
+               className="nav-link"
+               style={{
+                 background: "#8ac03b",
+                 color: "white",
+                 borderRadius: "7px",
+                 fontWeight: "600",
+                 marginLeft: "0.7rem",
+                 paddingLeft: "20px",
+                 paddingRight: "20px",
+                 fontSize: "14px",
+               }}
+               onClick={() => location.push("/signup")}
+             >
+                Go to the dashboard
+             </a>
+          )}
+          
+        </li>
+      )}
             </ul>
           </div>
         </div>
       </nav>
     );
   }
-}
+
+  export default Navbar;

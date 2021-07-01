@@ -365,6 +365,7 @@ ul.link_container {
     display: none;
   }
 }
+
 .blackline {
   border-left: 3px solid #ffffff;
   height: 230px;
@@ -401,6 +402,7 @@ ul.link_container {
     margin-left: -24px;
   }
 }
+
 /* optimize kitchen */
 .container_weserve {
   display: flex;
@@ -1357,6 +1359,7 @@ ul.link_container {
   .form-banner {
     margin-left: -3rem;
   }
+  
 }
 
 /* /loaders in forms */
@@ -1552,7 +1555,12 @@ ul.link_container {
 .list-responsive {
   display: none;
 }
-
+.username{
+  margin-left: 45rem;
+}
+.username-2{
+  margin-left: 55rem;
+}
 @media only screen and (max-width: 479px) {
   #pricing-table .plan {
     width: 350px;
@@ -1574,6 +1582,12 @@ ul.link_container {
     line-height: 2.25;
     height: auto;
     border: none;
+  }
+  .username{
+    margin-left: 1rem;
+  }
+  .username-2{
+    margin-left: 1rem;
   }
 }
 .offer {

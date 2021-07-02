@@ -21,13 +21,13 @@ export default function Login() {
       [name]: value,
     }));
   };
-  console.log(onChange)
+  
 
-  React.useEffect(() => {
-    if (authenticated) {
-      router.push('/')
-    }
-  }, [authenticated])
+  // React.useEffect(() => {
+  //   if (authenticated) {
+  //     router.push('/')
+  //   }
+  // }, [authenticated])
 
 
   const submit = async () => {
@@ -38,7 +38,7 @@ export default function Login() {
         password: form.password,
       });
       if (user?.sub) {
-        router.push('/')
+        router.push('/signup')
       }
     } catch (error) {
       if (error?.code === 401) {
@@ -47,6 +47,7 @@ export default function Login() {
     }
   };
   return (
+    <>
     <Layout>
       <Panel>
         <h1 className="text-2xl mb-6">Login</h1>
@@ -79,15 +80,16 @@ export default function Login() {
           style={{ marginTop: "0.2rem" }}
           className={!isValid ? "disabled" : ""}
           onClick={() => isValid && submit()}
+          disabled={!form.email || !form.password}
         >
-          Submit
+          Login
         </Submit>
         {error && <Error>{error}</Error>}
       </Panel>
-      <div style={{marginBottom:"4rem"}}></div>
-      <Footer/>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
       </Layout>
-      
+      <Footer/>
+      </>
   );
 }
 
@@ -101,7 +103,7 @@ const Panel = styled.section`
   margin-right: auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  margin-top: 8rem;
+  margin-top: 10rem;
 `;
 
 const FieldSet = styled.fieldset`
@@ -144,23 +146,24 @@ margin-top: 0.5rem;
 `;
 
 const Submit = styled.button`
---tw-bg-opacity: 1;
-border:none;
-font-family: "Nunito", sans-serif;
-background-color:#8ac03b;
-border-radius: 0.25rem;
 width: 100%;
+font-family: "Nunito", sans-serif;
+border-radius: 0.25rem;
 height: 2.5rem;
-letter-spacing: 0.05em;
+--tw-bg-opacity: 1;
+background-color:#8ac03b;
 --tw-text-opacity: 1;
+border:none;
 color: rgba(255, 255, 255, var(--tw-text-opacity));
 text-transform: uppercase;
-  
-  &.disabled {
-    cursor: not-allowed;
-    --tw-bg-opacity: 1;
-background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
---tw-text-opacity: 1;
-color: rgba(55, 65, 81, var(--tw-text-opacity));
-  }
+letter-spacing: 0.05em;
+padding-top:10px;
+padding-bottom:10px;
+
+&:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+  cursor: not-allowed;
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
 `;

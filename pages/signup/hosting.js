@@ -2,12 +2,12 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import { Layout } from "../../components";
+import Layout  from "../../components/Layout";
 import { Radio } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
-import { Footer as Foter, H2, H4, Main, Button } from "../../components/styled";
+import { Footer as Foter, H2, H4, Main,GhostButton, Button } from "../../components/styled";
 import Footer from "../../components/Footer";
 export default function Hosting() {
   const router = useRouter();
@@ -34,6 +34,7 @@ export default function Hosting() {
   const prevPage = () => router.push("/signup/about-yourself");
   console.log(Radio)
   return (
+    <>
     <Layout>
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
@@ -77,7 +78,7 @@ export default function Hosting() {
         </section>
       </Main>
       <Foter>
-        <Button onClick={() => prevPage()}>Back</Button>
+        <GhostButton onClick={() => prevPage()}>Back</GhostButton>
         <Button
           onClick={() => nextPage()}
           style={{
@@ -87,8 +88,9 @@ export default function Hosting() {
           Next
         </Button>
       </Foter>
-      <div style={{marginBottom:"4rem"}}></div>
-      <Footer/>
-    </Layout>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      </Layout> <Footer/>
+   
+    </>
   );
 }

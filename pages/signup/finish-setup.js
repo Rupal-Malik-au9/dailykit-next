@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { Gif } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 
-import { Layout } from "../../components";
+import Layout  from "../../components/Layout";
 import { Button, Main } from "../../components/styled";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
@@ -68,9 +68,10 @@ const gif_ids = {
 
 export default function FinishSetup() {
   const { user } = useAuth();
-
+console.log(user.organization)
   return (
-    <Layout hideSteps={user?.organization?.onboardStatus === "FINISH_SETUP"}>
+    <div hidesteps={user?.organization?.onboardStatus === "FINISH_SETUP"}>
+      <Layout>
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
         {user?.organization?.onboardStatus === "SETUP_DOMAIN" ? (
@@ -78,9 +79,10 @@ export default function FinishSetup() {
         ) : (
           <GifCycle />
         )}
-      </Main><div style={{marginBottom:"4rem"}}></div>
-      <Footer/>
-    </Layout>
+      </Main>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      </Layout><Footer/>
+  </div>
   );
 }
 
@@ -196,10 +198,10 @@ const GifCycle = () => {
         </header>
       ) : (
         <header className="text-left p-3 absolute z-10 inset-0 h-full">
-          <h1 className="text-2xl font-medium text-white ">
+          <h1 className="text-2xl font-medium text-black ">
             Setting up your instance!
           </h1>
-          <p className="mt-1 text-white leading-5">
+          <p className="mt-1 text-black leading-5">
             This could take a while. In the meantime, enjoy this GIF sequence
             we've curated for you.
           </p>

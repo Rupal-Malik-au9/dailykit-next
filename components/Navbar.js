@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../store/auth";
 export const Navbar =()=> {
     const location = useRouter();
-    const {authenticated } = useAuth();
+    const {user,authenticated } = useAuth();
     return (
       <nav
         className="navbar fixed-top navbar-expand-lg navbar-light bg-light"
@@ -520,7 +520,29 @@ export const Navbar =()=> {
                   Schedule Demo
                 </a>
               </li>
-              {authenticated ? (
+              {!authenticated ? (
+                 <li className="nav-item">
+                    {!location.pathname.includes("login") && (
+                      <a
+                      className="nav-link"
+                      style={{
+                        background: "#8ac03b",
+                        color: "white",
+                        borderRadius: "7px",
+                        fontWeight: "600",
+                        marginLeft: "0.7rem",
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+                        fontSize: "14px",
+                      }}
+                      onClick={() => location.push("/signup")}>
+                       Signup/Login
+                      </a> )}  
+                    </li>
+                 ):(
+                 
+           
+                user.organization && user.organization.onboardStatus!="FINISH_SETUP" ?(
         <li className="nav-item">
           <a className="nav-link"
                   style={{
@@ -537,29 +559,28 @@ export const Navbar =()=> {
                 >
                   Complete your Signup
                 </a>
-        </li>
-      ) : (
-        <li className="nav-item">
-          {!location.pathname.includes("login") && (
-               <a
-               className="nav-link"
-               style={{
-                 background: "#8ac03b",
-                 color: "white",
-                 borderRadius: "7px",
-                 fontWeight: "600",
-                 marginLeft: "0.7rem",
-                 paddingLeft: "20px",
-                 paddingRight: "20px",
-                 fontSize: "14px",
-               }}
-               onClick={() => location.push("/signup")}
-             >
-                Go to the dashboard
-             </a>
-          )}
-          
-        </li>
+        </li>):(
+                       
+                          <li className="nav-item">
+                            <a className="nav-link"
+                                    style={{
+                                      background: "#8ac03b",
+                                      color: "white",
+                                      borderRadius: "7px",
+                                      fontWeight: "600",
+                                      marginLeft: "0.7rem",
+                                      paddingLeft: "20px",
+                                      paddingRight: "20px",
+                                      fontSize: "14px",
+                                    }}
+                                    onClick={() => location.push("/signup")}
+                                  >
+                                    Go to dashboard
+                                  </a>
+                          </li>)
+     
+       
+        
       )}
             </ul>
           </div>
@@ -569,3 +590,5 @@ export const Navbar =()=> {
   }
 
   export default Navbar;
+  // SETUP_PENDING
+  // console.log(user.organization.onboardStatus)

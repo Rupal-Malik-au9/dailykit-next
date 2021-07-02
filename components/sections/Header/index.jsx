@@ -5,6 +5,7 @@ import { useAuth } from "../../../store/auth";
 import Image from "next/image";
 const Header = () => {
   const location = useRouter();
+  const router=useRouter()
   const { user, logout, authenticated } = useAuth();
   return (
     <nav
@@ -15,7 +16,7 @@ const Header = () => {
     }}
   >
     <div className="container-fluid mt-2 mb-2" style={{display:"flex","justifyContent":"space-between"}}>
-      <a className="navbar-brand" onClick={() => location.push("/login")} style={{ marginLeft: "1.5rem" }}>
+      <a className="navbar-brand" onClick={() => location.push("/")} style={{ marginLeft: "1.5rem" }}>
         <Image
           src="/assets/images/Logo.png"
           alt=""
@@ -62,7 +63,7 @@ const Header = () => {
           {!location.pathname.includes("signup") && (
             <Styles.Auth
               className="nunito solid text-white text-uppercase border-0"
-              onClick={() => history.push("/signup")}
+              onClick={() => router.push("/signup")}
             >
               Sign Up
             </Styles.Auth>

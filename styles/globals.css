@@ -1562,6 +1562,9 @@ ul.link_container {
   margin-left: 55rem;
 }
 @media only screen and (max-width: 479px) {
+  .progressBar{
+    display: none;
+  }
   #pricing-table .plan {
     width: 350px;
   }

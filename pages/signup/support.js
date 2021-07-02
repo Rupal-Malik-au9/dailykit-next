@@ -8,16 +8,19 @@ import {
   Card,
   Main,
   Footer as Foter,
+  GhostButton,
   Button,
   H2,
   CheckBoxWrapper,
 } from "../../components/styled";
-import { Layout } from "../../components";
+
+import Layout  from "../../components/Layout";
 import { useAuth } from "../../store/auth";
 import { BulbEmoji } from "../../assets/icons";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
 import Footer from "../../components/Footer";
+
 export default function Support() {
   const { user } = useAuth();
   const router = useRouter();
@@ -44,6 +47,7 @@ export default function Support() {
   const prevPage = () => router.push("/signup/hosting");
 
   return (
+    <>
     <Layout>
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
@@ -90,17 +94,16 @@ export default function Support() {
 
       </Main>
       <Foter>
-        <Button onClick={() => prevPage()}>Back</Button>
+        <GhostButton onClick={() => prevPage()}>Back</GhostButton>
         <Button
           onClick={() => nextPage()}
-          style={{
-            background: "#8ac03b",
-          }}
         >
           Next
         </Button>
-      </Foter><div style={{marginBottom:"4rem"}}></div>
+      </Foter>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      </Layout>
       <Footer/>
-    </Layout>
+   </>
   );
 }

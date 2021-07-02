@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { useLazyQuery } from "@apollo/client";
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import { Layout } from "../../components";
 import { Label, Main } from "../../components/styled";
 import * as utils from "../../utils";
 import { useAuth } from "../../store/auth";
 import { ADMIN_EXISTS } from "../../graphql";
 import  Footer from "../../components/Footer";
-
+import Layout  from "../../components/Layout";
 export default function Signup() {
   const router = useRouter();
   const { dispatch } = useAuth();
@@ -79,7 +78,8 @@ export default function Signup() {
     check_email({ variables: { where: { email: { _eq: value } } } });
 
   return (
-  <Layout>
+   <>
+ <Layout>
       <Main>
         <Panel>
           <h1 className="text-2xl mb-6">Register</h1>
@@ -133,6 +133,7 @@ export default function Signup() {
             style={{ marginTop: "0.2rem" }}
             className={!isValid || submitting ? "disabled" : ""}
             onClick={() => (isValid || !submitting) && submit()}
+            disabled={!form.firstName || !form.lastName || !form.email || !form.password}
           >
             {submitting ? "Submitting" : "Submit"}
           </Submit>
@@ -141,8 +142,9 @@ export default function Signup() {
           )}
         </Panel>
       </Main>
-      <div style={{marginBottom:"4rem"}}></div><Footer />
-    </Layout>
+       </Layout>
+      <Footer />
+    </>
   );
 };
 

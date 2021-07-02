@@ -25,24 +25,44 @@ color: rgba(107, 114, 128, var(--tw-text-opacity));
    }
 `
 
+export const GhostButton = styled.button`
+color: #8ac03b;
+font-family: "Nunito", sans-serif;
+text-transform: uppercase; 
+font-weight: bolder; 
+font-size: 0.875rem;
+line-height: 1.25rem;
+border:2px solid #8ac03b;
+padding-left: 1rem;
+padding-right: 1rem;
+height: 2.5rem;
+border-radius: 9999px;
+margin-top:2rem;
+   &:disabled {
+      cursor: not-allowed;
+      --tw-bg-opacity: 1;
+background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+--tw-text-opacity: 1;
+color: rgba(107, 114, 128, var(--tw-text-opacity));
+   }
+`
+
 export const Footer = styled.footer`
    padding: 0 16px;
    font-family: "Nunito", sans-serif;
    grid-area: footer;
    display:flex;
    align-items:center;
-   justify-content: space-between;}
+   justify-content: flex-end;}
 `
 
 export const Main = styled.main`
    grid-area: main;
-   overflow-y: scroll;
    font-family: "Nunito", sans-serif;
    overflow-x: hidden;
    background: #ffffff;
    margin: 16px 16px 0 16px;
    border: 1px solid #ececec;
-   margin-top: 8rem;
 `
 
 export const H2 = styled.h2`

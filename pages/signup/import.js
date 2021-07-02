@@ -2,11 +2,11 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { Layout } from "../../components";
+import Layout  from "../../components/Layout";
 import { Radio } from "../../components";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { Button, Main, Footer as Foter, Label, H2 } from "../../components/styled";
+import { GhostButton,Button, Main, Footer as Foter, Label, H2 } from "../../components/styled";
 import Footer from "../../components/Footer";
 import {
   UPDATE_ORGANIZATION,
@@ -81,7 +81,8 @@ export default function Import() {
     });
 
   return (
-    <Layout>
+    <>
+ <Layout>
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
         <section className="mt-3 mx-auto w-2/4">
@@ -150,7 +151,7 @@ export default function Import() {
         </section>
       </Main>
       <Foter>
-        <Button onClick={back}>Back</Button>
+        <GhostButton onClick={back}>Back</GhostButton>
         <section className="space-x-3">
           <button onClick={next} className="btn-style-twelve bold">
             Skip this step?
@@ -159,8 +160,9 @@ export default function Import() {
             Next
           </Button>
         </section>
-      </Foter><div style={{marginBottom:"4rem"}}></div>
-      <Footer/>
-    </Layout>
+      </Foter>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      </Layout><Footer/>
+    </>
   );
 }

@@ -13,12 +13,13 @@ import {
 
 import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
 
-import { Layout } from "../../components";
+import  Footer from "../../components/Footer";
+import Layout  from "../../components/Layout";
 import { useAuth } from "../../store/auth";
 import VerifyEmailBanner from "../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../graphql";
 import { useTimezones, useCurrencies } from "../../utils";
-import Footer from "../../components/Footer";
+
 export default function Company() {
   const { user } = useAuth();
   const history = useRouter();
@@ -62,6 +63,7 @@ export default function Company() {
   }, [user.organization]);
 
   const save = () => {
+    if (!form.company) return setError("Company's Name is required.");
     update({
       variables: {
         id: user.organization.id,
@@ -76,6 +78,7 @@ export default function Company() {
   };
 
   return (
+    <>
     <Layout>
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
@@ -91,7 +94,7 @@ export default function Company() {
                   required
                   value={form.company}
                   autoComplete="off"
-                  placeholder="Enter your companie's name"
+                  placeholder="Enter your company's name"
                   onChange={(e) => handleChange(e)}
                 />
               </Field>
@@ -219,9 +222,12 @@ export default function Company() {
       </Main>
       <Foter>
         <span />
-        <Button onClick={save}>Next</Button>
-      </Foter><div style={{marginBottom:"4rem"}}></div>
-    </Layout>
+        <Button onClick={save} disabled={!form.company}>Next</Button>
+      </Foter>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      </Layout>
+      <Footer />
+      </>
   );
 };
 

@@ -3,12 +3,12 @@ import { useMutation } from "@apollo/client";
 import { Gif } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 
-import Layout  from "../../components/Layout";
-import { Button, Main } from "../../components/styled";
-import { useAuth } from "../../store/auth";
-import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { UPDATE_ORGANIZATION } from "../../graphql";
-import Footer from "../../components/Footer";
+import Layout  from "../../../components/Layout";
+import { Button, Main } from "../../../components/styled";
+import { useAuth } from "../../../store/auth";
+import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
+import { UPDATE_ORGANIZATION } from "../../../graphql";
+import Footer from "../../../components/Footer";
 const gif_ids = {
   launch: [
     "tXLpxypfSXvUc",

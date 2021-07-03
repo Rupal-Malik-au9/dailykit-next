@@ -12,14 +12,14 @@ import {
   Button,
   H2,
   CheckBoxWrapper,
-} from "../../components/styled";
+} from "../../../components/styled";
 
-import Layout  from "../../components/Layout";
-import { useAuth } from "../../store/auth";
-import { BulbEmoji } from "../../assets/icons";
-import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { UPDATE_ORGANIZATION } from "../../graphql";
-import Footer from "../../components/Footer";
+import Layout  from "../../../components/Layout";
+import { useAuth } from "../../../store/auth";
+import { BulbEmoji } from "../../../assets/icons";
+import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
+import { UPDATE_ORGANIZATION } from "../../../graphql";
+import Footer from "../../../components/Footer";
 
 export default function Support() {
   const { user } = useAuth();
@@ -27,7 +27,7 @@ export default function Support() {
   const [support, setSupport] = React.useState(false);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
-      router.push("/signup/import");
+      router.push("/onboard/signup/import");
     },
     onError: (error) => {
       console.log(error);
@@ -44,7 +44,7 @@ export default function Support() {
       },
     });
   };
-  const prevPage = () => router.push("/signup/hosting");
+  const prevPage = () => router.push("/onboard/signup/hosting");
 
   return (
     <>

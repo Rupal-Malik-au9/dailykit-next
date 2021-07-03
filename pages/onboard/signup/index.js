@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useLazyQuery } from "@apollo/client";
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import { Label, Main } from "../../components/styled";
-import * as utils from "../../utils";
-import { useAuth } from "../../store/auth";
-import { ADMIN_EXISTS } from "../../graphql";
-import  Footer from "../../components/Footer";
-import Layout  from "../../components/Layout";
+import { Label, Main } from "../../../components/styled";
+import * as utils from "../../../utils";
+import { useAuth } from "../../../store/auth";
+import { ADMIN_EXISTS } from "../../../graphql";
+import  Footer from "../../../components/Footer";
+import Layout  from "../../../components/Layout";
 export default function Signup() {
   const router = useRouter();
   const { dispatch } = useAuth();
@@ -64,7 +64,7 @@ export default function Signup() {
 
         if (user?.sub) {
           dispatch({ type: "SET_USER", payload: { email: user?.email } });
-          router.replace("/signup/company");
+          router.replace("/onboard/signup/company");
         }
       }
     } catch (error) {
@@ -124,7 +124,7 @@ export default function Signup() {
               placeholder="Enter your password"
             />
           </FieldSet>
-          <Link href="/login">
+          <Link href="/onboard/login">
             <button className="bold" style={{ "marginLeft": "-13rem" }}>
               Login instead?
             </button>

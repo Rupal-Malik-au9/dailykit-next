@@ -2,17 +2,17 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 
-import Layout  from "../../components/Layout";
-import { Radio } from "../../components";
-import { useAuth } from "../../store/auth";
-import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { GhostButton,Button, Main, Footer as Foter, Label, H2 } from "../../components/styled";
-import Footer from "../../components/Footer";
+import Layout  from "../../../components/Layout";
+import { Radio } from "../../../components";
+import { useAuth } from "../../../store/auth";
+import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
+import { GhostButton,Button, Main, Footer as Foter, Label, H2 } from "../../../components/styled";
+import Footer from "../../../components/Footer";
 import {
   UPDATE_ORGANIZATION,
   MARKETPLACE_COMPANIES,
   INSERT_COMPANY_MENU_IMPORT,
-} from "../../graphql";
+} from "../../../graphql";
 
 export default function Import() {
   const { user } = useAuth();
@@ -23,7 +23,7 @@ export default function Import() {
   const [option, setOption] = React.useState("source");
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
-      router.push("/signup/finish-setup");
+      router.push("/onboard/signup/finish-setup");
     },
     onError: (error) => {
       console.log(error);
@@ -69,7 +69,7 @@ export default function Import() {
     }
   };
 
-  const back = () => router.push("/signup/support");
+  const back = () => router.push("/onboard/signup/support");
   const next = () =>
     update({
       variables: {

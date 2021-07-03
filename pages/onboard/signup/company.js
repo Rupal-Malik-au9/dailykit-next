@@ -11,14 +11,14 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../components/styled";
+import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../../components/styled";
 
-import  Footer from "../../components/Footer";
-import Layout  from "../../components/Layout";
-import { useAuth } from "../../store/auth";
-import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { UPDATE_ORGANIZATION } from "../../graphql";
-import { useTimezones, useCurrencies } from "../../utils";
+import  Footer from "../../../components/Footer";
+import Layout  from "../../../components/Layout";
+import { useAuth } from "../../../store/auth";
+import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
+import { UPDATE_ORGANIZATION } from "../../../graphql";
+import { useTimezones, useCurrencies } from "../../../utils";
 
 export default function Company() {
   const { user } = useAuth();
@@ -29,8 +29,8 @@ export default function Company() {
   const { list: currencies } = useCurrencies(currencySearch);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
-      history.push("/signup/about-yourself");
-      console.log(history.push("/signup/about-yourself"))
+      history.push("/onboard/signup/about-yourself");
+      console.log(history.push("/onboard/signup/about-yourself"))
     },
     onError: (error) => {
       console.log(error);

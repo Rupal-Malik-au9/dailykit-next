@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   })
 
   React.useEffect(() => {
-     if (!loading) {
+     if (!loading && location.pathname.includes('onboard')) {
         if (Array.isArray(admins) && admins.length) {
            const [admin] = admins
            dispatch({ type: 'SET_USER', payload: admin })
@@ -77,25 +77,25 @@ export const AuthProvider = ({ children }) => {
            if (status) {
               switch (status) {
                  case 'COMPANY':
-                    Router.push('/signup/company')
+                    Router.push('/onboard/signup/company')
                     break
                  case 'ABOUT_YOURSELF':
-                    Router.push('/signup/about-yourself')
+                    Router.push('/onboard/signup/about-yourself')
                     break
                  case 'HOSTING':
-                    Router.push('/signup/hosting')
+                    Router.push('/onboard/signup/hosting')
                     break
                  case 'SUPPORT':
-                    Router.push('/signup/support')
+                    Router.push('/onboard/signup/support')
                     break
                  case 'IMPORT':
-                    Router.push('/signup/import')
+                    Router.push('/onboard/signup/import')
                     break
                  case 'SETUP_DOMAIN':
-                    Router.push('/signup/finish-setup')
+                    Router.push('/onboard/signup/finish-setup')
                     break
                  case 'FINISH_SETUP':
-                    Router.push('/signup/finish-setup')
+                    Router.push('/onboard/signup/finish-setup')
                     break
                  case 'ONBOARDED':
                     Router.push('/')
@@ -125,36 +125,36 @@ export const AuthProvider = ({ children }) => {
   const logout = React.useCallback(() => {
      localStorage.removeItem('token')
      dispatch({ type: 'LOGOUT' })
-     Router.push('/login')
+     Router.push('/onboard/login')
   }, [])
 
   React.useEffect(() => {
      switch (location.pathname) {
-        case '/signup': {
+        case '/onboard/signup': {
            dispatch({ type: 'CHANGE_STEP', payload: 1 })
            break
         }
-        case '/signup/company': {
+        case '/onboard/signup/company': {
            dispatch({ type: 'CHANGE_STEP', payload: 2 })
            break
         }
-        case '/signup/about-yourself': {
+        case '/onboard/signup/about-yourself': {
            dispatch({ type: 'CHANGE_STEP', payload: 3 })
            break
         }
-        case '/signup/hosting': {
+        case '/onboard/signup/hosting': {
            dispatch({ type: 'CHANGE_STEP', payload: 4 })
            break
         }
-        case '/signup/support': {
+        case '/onboard/signup/support': {
            dispatch({ type: 'CHANGE_STEP', payload: 5 })
            break
         }
-        case '/signup/import': {
+        case '/onboard/signup/import': {
            dispatch({ type: 'CHANGE_STEP', payload: 6 })
            break
         }
-        case '/signup/finish-setup': {
+        case '/onboard/signup/finish-setup': {
            dispatch({ type: 'CHANGE_STEP', payload: 7 })
            break
         }

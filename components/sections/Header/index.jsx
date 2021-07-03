@@ -55,7 +55,7 @@ const Header = () => {
           {!location.pathname.includes("login") && (
             <Styles.Auth
               className="nunito solid text-white text-uppercase border-0"
-              onClick={() => location.push("/login")}
+              onClick={() => location.push("/onboard/login")}
             >
               Login
             </Styles.Auth>
@@ -63,7 +63,7 @@ const Header = () => {
           {!location.pathname.includes("signup") && (
             <Styles.Auth
               className="nunito solid text-white text-uppercase border-0"
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push("/onboard/signup")}
             >
               Sign Up
             </Styles.Auth>

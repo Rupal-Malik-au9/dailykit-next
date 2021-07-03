@@ -12,7 +12,7 @@ function Redirect({ to }) {
 export const Layout = ({ children }) => {
   const { authenticated } = useAuth();
 
-  if (!authenticated) <Redirect to="/login" />;
+  if (!authenticated) <Redirect to="/onboard/login" />;
 
   return (
     <>

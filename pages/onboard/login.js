@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAuth } from "../store/auth";
-import { Layout } from "../components";
-import Footer from "../components/Footer";
+import { useAuth } from "../../store/auth";
+import { Layout } from "../../components";
+import Footer from "../../components/Footer";
 export default function Login() {
   const router = useRouter();
   const { authenticated, login } = useAuth();
@@ -38,7 +38,7 @@ export default function Login() {
         password: form.password,
       });
       if (user?.sub) {
-        router.push('/signup')
+        router.push('/onboard/signup')
       }
     } catch (error) {
       if (error?.code === 401) {
@@ -71,7 +71,7 @@ export default function Login() {
             placeholder="Enter your password"
           />
         </FieldSet>
-        <Link href="/signup">
+        <Link href="/onboard/signup">
           <button className="bold" style={{ "marginLeft": "-13rem" }}>
             Register instead?
           </button>
@@ -159,7 +159,6 @@ text-transform: uppercase;
 letter-spacing: 0.05em;
 padding-top:10px;
 padding-bottom:10px;
-
 &:disabled {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity));

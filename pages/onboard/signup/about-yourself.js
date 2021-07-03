@@ -2,12 +2,12 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import Layout  from "../../components/Layout";
-import { useAuth } from "../../store/auth";
-import VerifyEmailBanner from "../../components/VerifyEmailBanner";
-import { UPDATE_USER, UPDATE_ORGANIZATION } from "../../graphql";
-import { Footer as Foter, Main, Field, Label, Form,GhostButton, Button, H2, Input } from "../../components/styled";
-import Footer from "../../components/Footer";
+import Layout  from "../../../components/Layout";
+import { useAuth } from "../../../store/auth";
+import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
+import { UPDATE_USER, UPDATE_ORGANIZATION } from "../../../graphql";
+import { Footer as Foter, Main, Field, Label, Form,GhostButton, Button, H2, Input } from "../../../components/styled";
+import Footer from "../../../components/Footer";
 export default function AboutYourself() {
   const { user } = useAuth();
   const history = useRouter();
@@ -18,7 +18,7 @@ export default function AboutYourself() {
  
   const [update_org] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
-      history.push("/signup/hosting");
+      history.push("/onboard/signup/hosting");
     },
     onError: (error) => {
       console.log(error);
@@ -112,7 +112,7 @@ export default function AboutYourself() {
         </div>
       </Main>
       <Foter>
-        <GhostButton onClick={() => history.push("/signup/company")}>Back</GhostButton>
+        <GhostButton onClick={() => history.push("/onboard/signup/company")}>Back</GhostButton>
         <Button onClick={submit} disabled={!form.designation || !form.phoneNumber}>Next</Button>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}

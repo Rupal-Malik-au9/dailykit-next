@@ -20,11 +20,13 @@ import { BulbEmoji } from "../../../assets/icons";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
 import Footer from "../../../components/Footer";
+import Confetti from 'react-dom-confetti';
 
 export default function Support() {
   const { user } = useAuth();
   const router = useRouter();
   const [support, setSupport] = React.useState(false);
+  const [onProps,setOnProps] = React.useState(false);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
       router.push("/onboard/signup/import");
@@ -43,9 +45,22 @@ export default function Support() {
         },
       },
     });
+    setOnProps(true)
   };
   const prevPage = () => router.push("/onboard/signup/hosting");
-
+  const config = {
+    angle: 90,
+    spread: "127",
+    startVelocity: "25",
+    elementCount: "25",
+    dragFriction: 0.12,
+    duration: "2160",
+    stagger: 3,
+    width: "10px",
+    height: "10px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+  };
   return (
     <>
     <Layout>
@@ -99,7 +114,7 @@ export default function Support() {
           onClick={() => nextPage()}
         >
           Next
-        </Button>
+        </Button> <Confetti active={ onProps } config={ config }/>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}
       </Layout>

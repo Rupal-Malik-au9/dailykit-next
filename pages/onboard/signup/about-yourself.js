@@ -8,9 +8,11 @@ import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_USER, UPDATE_ORGANIZATION } from "../../../graphql";
 import { Footer as Foter, Main, Field, Label, Form,GhostButton, Button, H2, Input } from "../../../components/styled";
 import Footer from "../../../components/Footer";
+import Confetti from 'react-dom-confetti';
 export default function AboutYourself() {
   const { user } = useAuth();
   const history = useRouter();
+  const [onProps,setOnProps] = React.useState(false);
   const [form, setForm] = React.useState({
     phoneNumber: "",
     designation: "",
@@ -24,6 +26,19 @@ export default function AboutYourself() {
       console.log(error);
     },
   });
+  const config = {
+    angle: 90,
+    spread: "123",
+    startVelocity: "19",
+    elementCount: "25",
+    dragFriction: 0.12,
+    duration: "2160",
+    stagger: 3,
+    width: "10px",
+    height: "7px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+  };
   const [update] = useMutation(UPDATE_USER, {
     onCompleted: () => {
       update_org({
@@ -70,6 +85,7 @@ export default function AboutYourself() {
         },
       },
     });
+    setOnProps(true)
   };
 
   return (
@@ -114,6 +130,7 @@ export default function AboutYourself() {
       <Foter>
         <GhostButton onClick={() => history.push("/onboard/signup/company")}>Back</GhostButton>
         <Button onClick={submit} disabled={!form.designation || !form.phoneNumber}>Next</Button>
+        <Confetti active={ onProps } config={ config }/>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}
       </Layout ><Footer />

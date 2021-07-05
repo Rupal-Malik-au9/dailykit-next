@@ -8,6 +8,7 @@ import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { GhostButton,Button, Main, Footer as Foter, Label, H2 } from "../../../components/styled";
 import Footer from "../../../components/Footer";
+import Confetti from 'react-dom-confetti';
 import {
   UPDATE_ORGANIZATION,
   MARKETPLACE_COMPANIES,
@@ -20,6 +21,7 @@ export default function Import() {
   const [url, setUrl] = React.useState("");
   const [error, setError] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [onProps,setOnProps] = React.useState(false);
   const [option, setOption] = React.useState("source");
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
@@ -45,7 +47,19 @@ export default function Import() {
       }
     },
   });
-
+  const config = {
+    angle: 90,
+    spread: "127",
+    startVelocity: "25",
+    elementCount: "25",
+    dragFriction: 0.12,
+    duration: "2160",
+    stagger: 3,
+    width: "10px",
+    height: "10px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+  };
   const onSubmit = () => {
     setError("");
     if (!url.trim()) return setError("Menu URL is required.");
@@ -66,6 +80,7 @@ export default function Import() {
           },
         },
       });
+      setOnProps(true)
     }
   };
 
@@ -156,9 +171,10 @@ export default function Import() {
           <button onClick={next} className="btn-style-twelve bold">
             Skip this step?
           </button>
+          
           <Button type="button" onClick={onSubmit} disabled={!url || loading}>
             Next
-          </Button>
+          </Button><Confetti active={ onProps } config={ config }/>
         </section>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}

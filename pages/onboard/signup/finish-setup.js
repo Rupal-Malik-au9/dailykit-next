@@ -9,6 +9,7 @@ import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
 import Footer from "../../../components/Footer";
+import Confetti from 'react-dom-confetti';
 const gif_ids = {
   launch: [
     "tXLpxypfSXvUc",
@@ -68,7 +69,7 @@ const gif_ids = {
 
 export default function FinishSetup() {
   const { user } = useAuth();
-console.log(user.organization)
+  
   return (
     <div hidesteps={user?.organization?.onboardStatus === "FINISH_SETUP"}>
       <Layout>
@@ -85,10 +86,23 @@ console.log(user.organization)
   </div>
   );
 }
-
+const config = {
+  angle: 90,
+  spread: "238",
+  startVelocity: "43",
+  elementCount: "142",
+  dragFriction: 0.12,
+  duration: "2160",
+  stagger: 3,
+  width: "10px",
+  height: "10px",
+  perspective: "500px",
+  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+};
 const Installation = () => {
   const { user } = useAuth();
   const [name, setName] = React.useState("");
+  const [onProps,setOnProps] = React.useState(false);
   const [update, { loading }] = useMutation(UPDATE_ORGANIZATION, {
     onError: (error) => {
       console.log(error);
@@ -106,6 +120,8 @@ const Installation = () => {
         },
       },
     });
+  setOnProps(true)
+
   };
   return (
     <div style={{ display: "flex", justifyContent: "center", margin: "2rem 0 2rem" }}>
@@ -135,7 +151,7 @@ const Installation = () => {
           disabled={!name || !user?.keycloak?.email_verified || loading}
         >
           {loading ? "Saving" : "Save"}
-        </Button>
+        </Button> <Confetti active={ onProps } config={ config }/>
       </div>
     </div>
   );

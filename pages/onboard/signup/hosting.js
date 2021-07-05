@@ -8,10 +8,12 @@ import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
 import { Footer as Foter, H2, H4, Main,GhostButton, Button } from "../../../components/styled";
+import Confetti from 'react-dom-confetti';
 import Footer from "../../../components/Footer";
 export default function Hosting() {
   const router = useRouter();
   const { user } = useAuth();
+  const [onProps,setOnProps] = React.useState(false);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
       router.push("/onboard/signup/support");
@@ -20,7 +22,19 @@ export default function Hosting() {
       console.log(error);
     },
   });
-
+  const config = {
+    angle: 90,
+    spread: "123",
+    startVelocity: "19",
+    elementCount: "25",
+    dragFriction: 0.12,
+    duration: "2160",
+    stagger: 3,
+    width: "10px",
+    height: "7px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+  };
   const nextPage = () => {
     update({
       variables: {
@@ -30,6 +44,7 @@ export default function Hosting() {
         },
       },
     });
+    setOnProps(true)
   };
   const prevPage = () => router.push("/onboard/signup/about-yourself");
   console.log(Radio)
@@ -79,7 +94,7 @@ export default function Hosting() {
       </Main>
       <Foter>
         <GhostButton onClick={() => prevPage()}>Back</GhostButton>
-        <Button
+        <Confetti active={ onProps } config={ config }/><Button
           onClick={() => nextPage()}
           style={{
             background: "#8ac03b",

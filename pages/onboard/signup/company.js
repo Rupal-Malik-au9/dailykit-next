@@ -19,12 +19,14 @@ import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
 import { useTimezones, useCurrencies } from "../../../utils";
+import Confetti from 'react-dom-confetti';
 
 export default function Company() {
   const { user } = useAuth();
   const history = useRouter();
   const [tzSearch, setTzSearch] = React.useState("");
   const { timezones } = useTimezones(tzSearch);
+  const [onProps,setOnProps] = React.useState(false);
   const [currencySearch, setCurrencySearch] = React.useState("");
   const { list: currencies } = useCurrencies(currencySearch);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
@@ -42,7 +44,7 @@ export default function Company() {
     timezone: "",
     employeesCount: "",
   });
-
+console.log(onProps)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((form) => ({
@@ -50,7 +52,19 @@ export default function Company() {
       [name]: value,
     }));
   };
-
+  const config = {
+    angle: 90,
+    spread: "29",
+    startVelocity: "19",
+    elementCount: "25",
+    dragFriction: 0.12,
+    duration: "2160",
+    stagger: 3,
+    width: "10px",
+    height: "7px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+  };
   React.useEffect(() => {
     if (user.organization?.id) {
       setForm((form) => ({
@@ -74,7 +88,9 @@ export default function Company() {
           organizationName: form.company,
         },
       },
+
     });
+    setOnProps(true)
   };
 
   return (
@@ -223,6 +239,7 @@ export default function Company() {
       <Foter>
         <span />
         <Button onClick={save} disabled={!form.company}>Next</Button>
+        <Confetti active={ onProps } config={ config }/>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}
       </Layout>

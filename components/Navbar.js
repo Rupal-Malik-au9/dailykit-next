@@ -555,7 +555,7 @@ export const Navbar =()=> {
                     paddingRight: "20px",
                     fontSize: "14px",
                   }}
-                  onClick={() => location.push("/onboard/signup")}
+                  onClick={() => location.push("/onboard/signup/company")}
                 >
                   Complete your Signup
                 </a>
@@ -573,7 +573,7 @@ export const Navbar =()=> {
                                       paddingRight: "20px",
                                       fontSize: "14px",
                                     }}
-                                    onClick={() => location.push("/onboard/signup")}
+                                    onClick={() => location.push("/onboard/signup/finish-setup")}
                                   >
                                     Go to dashboard
                                   </a>

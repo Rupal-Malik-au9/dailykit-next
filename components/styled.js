@@ -15,7 +15,6 @@ padding-left: 1rem;
 padding-right: 1rem;
 height: 2.5rem;
 border-radius: 9999px;
-margin-top:2rem;
    &:disabled {
       cursor: not-allowed;
       --tw-bg-opacity: 1;
@@ -37,7 +36,7 @@ padding-left: 1rem;
 padding-right: 1rem;
 height: 2.5rem;
 border-radius: 9999px;
-margin-top:2rem;
+
    &:disabled {
       cursor: not-allowed;
       --tw-bg-opacity: 1;

@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 export const Button = styled.button`
-
 background-color: #8ac03b;
 font-family: "Nunito", sans-serif;
 text-transform: uppercase; 
@@ -226,6 +225,9 @@ margin-left:4rem;
       line-height: 24px;
       color: #555b6e;
    }
+   @media (max-width: 479px) {
+      display: none;
+    }
 `
 export const Input = styled.input`
 font-family: "Nunito", sans-serif;

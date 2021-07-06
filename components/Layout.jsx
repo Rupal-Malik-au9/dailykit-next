@@ -33,7 +33,7 @@ export const Layout = ({ children, hideSteps }) => {
    }
 
    return (
-      <Styles.Wrapper step={onboard.step} hideSteps={hideSteps} style={{marginTop:"6rem"}}>
+      <Styles.Wrapper step={onboard.step} hideSteps={hideSteps} style={{marginTop:"6rem"}} className="wrapper">
          <Header />
          <Styles.Aside hideSteps={hideSteps} className="progressBar">
             <Styles.Stage height1={evalHeightFirst(onboard.step)}>
@@ -86,6 +86,10 @@ const Styles = {
       display: grid;
       overflow: hidden;
       background: #fafafa;
+      @media (max-width: 479px) {
+         display: inline-block;
+      overflow:visible;
+       }
       ${({ hideSteps }) =>
          hideSteps
             ? css`
@@ -108,7 +112,12 @@ const Styles = {
       flex-direction: column;
       padding-top: 16px;
       display: ${({ hideSteps }) => (hideSteps ? 'none' : 'flex')};
-   `,
+      @media (max-width: 479px) {
+         display: inline-block;
+         grid-area: footer;
+         padding-left:1.6rem;
+         padding-top:2rem;
+       } `,
    Stage: styled.ul(
       ({ height1, height2 }) => css`
          font-size: 24px;

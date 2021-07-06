@@ -48,12 +48,18 @@ const Styles = {
     height: 6rem;
     color: rgba(255, 255, 255, 1);
     grid-template-columns: 96px 1fr;
+    @media (max-width: 479px) {
+      height: 12rem;
+  }
   `,
   Aside: styled.aside`
     display: flex;
     font-family: "Nunito", sans-serif;
     align-items: center;
     justify-content: center;
+    @media (max-width: 479px) {
+        margin-bottom: 6rem;
+    }
   `,
   Main: styled.main`
     display: grid;
@@ -84,5 +90,22 @@ const Styles = {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
     }
+    @media (max-width: 479px) {
+    button{
+      margin-bottom: 6rem;
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+      font-size:12px;
+    }
+    h3{
+      margin-top: 2rem;
+    }
+    p{
+      font-size: 0.7rem;
+      line-height: 1rem;
+    }
+  }
   `,
 };

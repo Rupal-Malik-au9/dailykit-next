@@ -1562,9 +1562,12 @@ ul.link_container {
   margin-left: 55rem;
 }
 @media only screen and (max-width: 479px) {
-  .progressBar{
-    display: none;
+  .finishSetupSection{
+    width: 18rem;
+    margin: 10px;
+    line-height: 1.8rem;
   }
+  
   #pricing-table .plan {
     width: 350px;
   }

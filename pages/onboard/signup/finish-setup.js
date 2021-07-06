@@ -72,8 +72,8 @@ export default function FinishSetup() {
   
   return (
     <div hidesteps={user?.organization?.onboardStatus === "FINISH_SETUP"}>
-      <Layout>
-      <Main>
+      <Layout style={{marginBottom:"20rem"}}>
+      <Main >
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
         {user?.organization?.onboardStatus === "SETUP_DOMAIN" ? (
           <Installation />
@@ -124,8 +124,8 @@ const Installation = () => {
 
   };
   return (
-    <div style={{ display: "flex", justifyContent: "center", margin: "2rem 0 2rem" }}>
-      <div className="mt-3 w-2/6 mx-auto text-center">
+    <div className="flex-container" style={{ display: "flex", justifyContent: "center", margin: "2rem 0 2rem" }}>
+      <div className="finishSetupSection mt-3 mx-auto text-center">
         <h2 className="text-3xl text-green-700 mb-4">Customize your URL</h2>
         <p className="text-center text-gray-500 mb-2">
           This is where you will access your apps and manage your team. Make sure

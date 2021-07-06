@@ -9,7 +9,7 @@ function Redirect({ to }) {
   }, [to]);
   return null;
 }
-export const Layout = ({ children }) => {
+export const Layout_2 = ({ children }) => {
   const { authenticated } = useAuth();
 
   if (!authenticated) <Redirect to="/onboard/login" />;

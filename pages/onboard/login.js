@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuth } from "../../store/auth";
-import { Layout } from "../../components";
+import { Layout_2 } from "../../components";
 import Footer from "../../components/Footer";
 export default function Login() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export default function Login() {
   };
   return (
     <>
-    <Layout>
+    <Layout_2>
       <Panel>
         <h1 className="text-2xl mb-6">Login</h1>
         <FieldSet>
@@ -87,7 +87,7 @@ export default function Login() {
         {error && <Error>{error}</Error>}
       </Panel>
       {/* <div style={{marginBottom:"4rem"}}></div> */}
-      </Layout>
+      </Layout_2>
       <Footer/>
       </>
   );

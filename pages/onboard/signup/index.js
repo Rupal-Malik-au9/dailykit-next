@@ -203,4 +203,5 @@ letter-spacing: 0.05em;
   cursor: not-allowed;
   color: rgba(55, 65, 81, var(--tw-text-opacity));
 }
+
 `;

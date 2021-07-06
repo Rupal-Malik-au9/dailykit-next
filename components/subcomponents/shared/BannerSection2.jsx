@@ -41,12 +41,12 @@ export default class BannerSection2 extends PureComponent {
             {this.props.buttonlink && (
               <a href={this.props.buttonlink}>
                 {this.props.greenbuttontext && (
-                  <button type="button" className="btn-style-thirteen green">
+                  <button type="button" className="btn-style-thirteen green mt-4">
                     {this.props.greenbuttontext}
                   </button>
                 )}
                 {this.props.blackbuttontext && (
-                  <button type="button" className="btn-style-thirteen black">
+                  <button type="button" className="btn-style-thirteen black mt-4">
                     {this.props.blackbuttontext}
                   </button>
                 )}

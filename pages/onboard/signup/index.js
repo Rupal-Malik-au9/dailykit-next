@@ -64,7 +64,7 @@ export default function Signup() {
 
         if (user?.sub) {
           dispatch({ type: "SET_USER", payload: { email: user?.email } });
-          router.replace("/onboard/signup/company");
+          router.push("/onboard/signup/company");
         }
       }
     } catch (error) {

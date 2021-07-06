@@ -87,16 +87,16 @@ export default function FinishSetup() {
   );
 }
 const config = {
-  angle: 90,
-  spread: "238",
-  startVelocity: "43",
-  elementCount: "142",
+  angle: "90",
+  spread: "230",
+  startVelocity: "32",
+  elementCount: "200",
   dragFriction: 0.12,
   duration: "2160",
   stagger: 3,
-  width: "10px",
-  height: "10px",
-  perspective: "500px",
+  width: "18px",
+  height: "16px",
+  perspective: "384px",
   colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
 };
 const Installation = () => {
@@ -145,13 +145,13 @@ const Installation = () => {
           />
           <span className="text-left text-green-500">{name}.dailykit.org</span>
         </section>
+        <div style={{marginLeft:"30rem"}}><Confetti active={ onProps } config={ config }/></div>
         <Button
           onClick={submit}
-
           disabled={!name || !user?.keycloak?.email_verified || loading}
         >
           {loading ? "Saving" : "Save"}
-        </Button> <Confetti active={ onProps } config={ config }/>
+        </Button> 
       </div>
     </div>
   );

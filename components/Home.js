@@ -198,6 +198,8 @@ export default class Home extends PureComponent {
               price: "$ 499",
             },
           ]}
+          dataAccount={"3161173:g2o5g2c3i8"}
+          dataForm={"4175542:d4z0s3"}
         />
         <BannerSection2
           rightimageurl="/assets/images/Reseller.png"

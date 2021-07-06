@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Styles } from "./styled";
-import { useAuth } from "../../../store/auth";
+import {useAuth } from "../../../store/auth";
 import Image from "next/image";
 const Header = () => {
   const location = useRouter();
@@ -46,9 +46,19 @@ const Header = () => {
             Hello, {user?.firstName}
             {user?.lastName}
           </span>
-          <Styles.Auth onClick={logout} className="ghost text-white text-uppercase border-0">
-            Logout
-          </Styles.Auth>
+          {user?.organization.onboardStatus=="FINISH_SETUP"? (
+            <Styles.Auth
+              className="nunito solid text-white border-0"
+              style={{"marginLeft":"0.5rem"}}
+              onClick={() => router.push("/")}
+            >
+              Go to dashboard
+            </Styles.Auth>
+          ):(<Styles.Auth onClick={logout} className="ghost text-white text-uppercase border-0">
+          Logout
+        </Styles.Auth>)}
+          
+          
         </section>
       ) : (
         <section className="username-2">

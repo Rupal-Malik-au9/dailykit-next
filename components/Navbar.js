@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../store/auth";
 export const Navbar =()=> {
     const location = useRouter();
-    const {user,authenticated } = useAuth();
+    const {user,authenticated,logout } = useAuth();
     return (
       <nav
         className="navbar fixed-top navbar-expand-lg navbar-light bg-light"
@@ -534,6 +534,7 @@ export const Navbar =()=> {
                         paddingLeft: "20px",
                         paddingRight: "20px",
                         fontSize: "14px",
+                        cursor:"pointer"
                       }}
                       onClick={() => location.push("/onboard/signup")}>
                        Signup/Login
@@ -554,6 +555,7 @@ export const Navbar =()=> {
                     paddingLeft: "20px",
                     paddingRight: "20px",
                     fontSize: "14px",
+                    cursor:"pointer"
                   }}
                   onClick={() => location.push("/onboard/signup/company")}
                 >
@@ -572,10 +574,11 @@ export const Navbar =()=> {
                                       paddingLeft: "20px",
                                       paddingRight: "20px",
                                       fontSize: "14px",
+                                      cursor:"pointer"
                                     }}
-                                    onClick={() => location.push("/onboard/signup/finish-setup")}
+                                    onClick={logout}
                                   >
-                                    Go to dashboard
+                                    Logout
                                   </a>
                           </li>)
      

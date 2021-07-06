@@ -10,10 +10,13 @@ import { UPDATE_ORGANIZATION } from "../../../graphql";
 import { Footer as Foter, H2, H4, Main,GhostButton, Button } from "../../../components/styled";
 import Confetti from 'react-dom-confetti';
 import Footer from "../../../components/Footer";
+import PricingSection1 from "../../../components/subcomponents/homepage/PricingSection1";
+
 export default function Hosting() {
   const router = useRouter();
   const { user } = useAuth();
   const [onProps,setOnProps] = React.useState(false);
+  const [option, setOption] = React.useState("cloud");
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
       router.push("/onboard/signup/support");
@@ -35,6 +38,7 @@ export default function Hosting() {
     perspective: "500px",
     colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
   };
+
   const nextPage = () => {
     update({
       variables: {
@@ -57,25 +61,24 @@ export default function Hosting() {
           <H2>Hosting</H2>
           <Radio>
             <Radio.Option
-              value="cloud"
+              value={option}
               id="cloud"
               name="hosting"
-              onClick={() => { }}
+              onClick={() => setOption("cloud")}
             >
               Cloud Hosting
             </Radio.Option>
             <Radio.Option
               id="self"
-              isDisabled
               name="hosting"
-              value=""
-              onClick={() => { }}
+              value={option}
+              onClick={() => setOption("self")}
             >
               Self Hosting
             </Radio.Option>
           </Radio>
-          {user.organization?.hosting?.type === "cloud" && (
-            <>
+          {option === "cloud" ? (
+            <> 
               <H4>Choose your Plan</H4>
               <Radio>
                 <Radio.Option
@@ -88,8 +91,25 @@ export default function Hosting() {
                   &nbsp;Free
                 </Radio.Option>
               </Radio>
-            </>
-          )}
+            </>):(
+              <PricingSection1
+              offers={[
+                {
+                  name: "Standard.",
+                  price: "$ 29",
+                },
+                {
+                  name: "Premium",
+                  price: "$ 79",
+                },
+                {
+                  name: "Professional",
+                  price: "$ 499",
+                },
+              ]}
+            />
+            )
+          }
         </section>
       </Main>
       <Foter>

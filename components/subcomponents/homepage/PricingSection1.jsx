@@ -4,8 +4,8 @@ export default class PricingSection1 extends PureComponent {
   render() {
     return (
       <div className="nunito pricingsection1">
-        <h6 className="price-heading">{this.props.heading}</h6>
-        <h6 className="price-subheading">{this.props.subheading}</h6>
+       {this.props.heading && <h6 className="price-heading">{this.props.heading}</h6>}
+       {this.props.subheading &&<h6 className="price-subheading">{this.props.subheading}</h6>}
         <div className="container">
           <div className="row justify-content-center">
             {this.props.offers.map((offer) => {
@@ -29,10 +29,10 @@ export default class PricingSection1 extends PureComponent {
           >
             Learn More
           </a>
-          <TrialForm
-            dataAccount={"3161173:g2o5g2c3i8"}
-            dataForm={"4175542:d4z0s3"}
-          />
+          {this.props.dataAccount &&<TrialForm
+            dataAccount={this.props.dataAccount}
+            dataForm={this.props.dataForm}
+          />}
         </div>
       </div>
     );

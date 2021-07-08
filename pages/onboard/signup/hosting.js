@@ -92,19 +92,22 @@ export default function Hosting() {
                 </Radio.Option>
               </Radio>
             </>):(
-              <PricingSection1
+              <PricingSection1 heading={"Choose your plan"}
               offers={[
                 {
                   name: "Standard.",
                   price: "$ 29",
+                  price_id:"price_1JA9hGGKMRh0bTaiorXrpqXr"
                 },
                 {
                   name: "Premium",
                   price: "$ 79",
+                  price_id:"price_1JAqRJGKMRh0bTaiY4z1dJfb"
                 },
                 {
                   name: "Professional",
                   price: "$ 499",
+                  price_id:"price_1JAqTfGKMRh0bTai5tiXdI5z"
                 },
               ]}
             />

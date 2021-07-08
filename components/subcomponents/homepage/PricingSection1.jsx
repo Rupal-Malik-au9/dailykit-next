@@ -22,13 +22,13 @@ export default class PricingSection1 extends PureComponent {
               );
             })}
           </div>
-          <a
+          {this.props.buttontext && <a
             type="button"
             href="/pricing"
             className="mt-4 btn-style-thirteen green"
           >
-            Learn More
-          </a>
+           {this.props.buttontext}
+          </a>}
           {this.props.dataAccount &&<TrialForm
             dataAccount={this.props.dataAccount}
             dataForm={this.props.dataForm}

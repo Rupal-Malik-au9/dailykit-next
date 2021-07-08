@@ -187,17 +187,18 @@ export default class Home extends PureComponent {
           offers={[
             {
               name: "Standard.",
-              price: "$ 29",
+              price: "$ 29"
             },
             {
               name: "Premium",
-              price: "$ 79",
+              price: "$ 79"
             },
             {
               name: "Professional",
-              price: "$ 499",
+              price: "$ 499"
             },
           ]}
+          buttontext={"Learn More"}
           dataAccount={"3161173:g2o5g2c3i8"}
           dataForm={"4175542:d4z0s3"}
         />

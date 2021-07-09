@@ -4,14 +4,16 @@ export default class PricingSection1 extends PureComponent {
   render() {
     return (
       <div className="nunito pricingsection1">
+               {this.props.marginHeight&&<div style={{marginTop:this.props.marginHeight}}/>}
        {this.props.heading && <h6 className="price-heading">{this.props.heading}</h6>}
        {this.props.subheading &&<h6 className="price-subheading">{this.props.subheading}</h6>}
+
         <div className="container">
           <div className="row justify-content-center">
             {this.props.offers.map((offer) => {
               return (
                 <div className="col-md-4 col-xs-10" key={offer.name}>
-                  <div className="card pricing-box">
+                  <div className="card pricing-box" onClick={()=>console.log(offer.price_id)}>
                     <div className="card-body">
                       <h4 className="card-subtitle">{offer.name}</h4>
                       <h1 className="card-title d-inline">{offer.price}</h1>

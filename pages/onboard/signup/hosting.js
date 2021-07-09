@@ -51,7 +51,7 @@ export default function Hosting() {
     setOnProps(true)
   };
   const prevPage = () => router.push("/onboard/signup/about-yourself");
-  console.log(Radio)
+ 
   return (
     <>
     <Layout>
@@ -93,6 +93,7 @@ export default function Hosting() {
               </Radio>
             </>):(
               <PricingSection1 heading={"Choose your plan"}
+              marginHeight="-80px"
               offers={[
                 {
                   name: "Standard.",

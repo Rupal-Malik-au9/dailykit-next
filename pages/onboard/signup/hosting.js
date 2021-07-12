@@ -1,7 +1,6 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-
 import Layout  from "../../../components/Layout";
 import { Radio } from "../../../components";
 import { useAuth } from "../../../store/auth";
@@ -11,8 +10,23 @@ import { Footer as Foter, H2, H4, Main,GhostButton, Button } from "../../../comp
 import Confetti from 'react-dom-confetti';
 import Footer from "../../../components/Footer";
 import PricingSection1 from "../../../components/subcomponents/homepage/PricingSection1";
-
+import { loadStripe } from '@stripe/stripe-js';
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 export default function Hosting() {
+  React.useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
+    }
+    if (query.get('canceled')) {
+      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+    }
+  }, []);
   const router = useRouter();
   const { user } = useAuth();
   const [onProps,setOnProps] = React.useState(false);
@@ -25,6 +39,7 @@ export default function Hosting() {
       console.log(error);
     },
   });
+
   const config = {
     angle: 90,
     spread: "123",
@@ -93,22 +108,22 @@ export default function Hosting() {
               </Radio>
             </>):(
               <PricingSection1 heading={"Choose your plan"}
-              marginHeight="-80px"
+              marginHeight={"-80px"}
               offers={[
                 {
                   name: "Standard.",
                   price: "$ 29",
-                  price_id:"price_1JA9hGGKMRh0bTaiorXrpqXr"
+                  price_id:"price_1JCJetGKMRh0bTaia6mIjYwC"
                 },
                 {
                   name: "Premium",
                   price: "$ 79",
-                  price_id:"price_1JAqRJGKMRh0bTaiY4z1dJfb"
+                  price_id:"price_1JCJfGGKMRh0bTaiuqXZltFb"
                 },
                 {
                   name: "Professional",
                   price: "$ 499",
-                  price_id:"price_1JAqTfGKMRh0bTai5tiXdI5z"
+                  price_id:"price_1JCJffGKMRh0bTai3tYKfX9n"
                 },
               ]}
             />

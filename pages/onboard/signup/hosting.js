@@ -64,6 +64,7 @@ export default function Hosting() {
       },
     });
     setOnProps(true)
+    console.log(uszer)
   };
   const prevPage = () => router.push("/onboard/signup/about-yourself");
  
@@ -93,40 +94,32 @@ export default function Hosting() {
             </Radio.Option>
           </Radio>
           {option === "cloud" ? (
+             <PricingSection1 heading={"Choose your plan"}
+             marginHeight={"-80px"}
+             offers={[
+               {
+                 name: "Standard.",
+                 price: "$ 29",
+                 price_id:"price_1JCJetGKMRh0bTaia6mIjYwC"
+               },
+               {
+                 name: "Premium",
+                 price: "$ 79",
+                 price_id:"price_1JCJfGGKMRh0bTaiuqXZltFb"
+               },
+               {
+                 name: "Professional",
+                 price: "$ 499",
+                 price_id:"price_1JCJffGKMRh0bTai3tYKfX9n"
+               },
+             ]}
+           />):(
             <> 
-              <H4>Choose your Plan</H4>
-              <Radio>
-                <Radio.Option
-                  id="plan"
-                  name="plan"
-                  value="plan"
-                  onClick={() => { }}
-                >
-                  <strike>$100</strike>
-                  &nbsp;Free
-                </Radio.Option>
-              </Radio>
-            </>):(
-              <PricingSection1 heading={"Choose your plan"}
-              marginHeight={"-80px"}
-              offers={[
-                {
-                  name: "Standard.",
-                  price: "$ 29",
-                  price_id:"price_1JCJetGKMRh0bTaia6mIjYwC"
-                },
-                {
-                  name: "Premium",
-                  price: "$ 79",
-                  price_id:"price_1JCJfGGKMRh0bTaiuqXZltFb"
-                },
-                {
-                  name: "Professional",
-                  price: "$ 499",
-                  price_id:"price_1JCJffGKMRh0bTai3tYKfX9n"
-                },
-              ]}
-            />
+            <H4>Choose your Plan</H4>
+            <div style={{textAlign:"center"}}>
+             coming soon....
+            </div>
+          </>
             )
           }
         </section>

@@ -25,6 +25,7 @@ export default async function createStripeCustomer(req, res) {
           },
         }
       )
+      console.log(customer.id)
         return res.status(200).json({success:true,message:"created Stripe Customer"});
       } catch (err) {
         res.status(500).json({ statusCode: 500, message: err.message });

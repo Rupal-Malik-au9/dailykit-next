@@ -33,7 +33,7 @@ export default function Hosting() {
   const [option, setOption] = React.useState("cloud");
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
-      router.push("/onboard/signup/support");
+      router.push("/card-details");
     },
     onError: (error) => {
       console.log(error);
@@ -64,7 +64,7 @@ export default function Hosting() {
       },
     });
     setOnProps(true)
-    console.log(uszer)
+    console.log(user)
   };
   const prevPage = () => router.push("/onboard/signup/about-yourself");
  
@@ -100,17 +100,21 @@ export default function Hosting() {
                {
                  name: "Standard.",
                  price: "$ 29",
-                 price_id:"price_1JCJetGKMRh0bTaia6mIjYwC"
+                 price_id:"price_1JCJetGKMRh0bTaia6mIjYwC",
+                email:user.email
                },
                {
                  name: "Premium",
                  price: "$ 79",
-                 price_id:"price_1JCJfGGKMRh0bTaiuqXZltFb"
+                 price_id:"price_1JCJfGGKMRh0bTaiuqXZltFb",
+                 number: '4242424242424242',
+                  email:user.email
                },
                {
                  name: "Professional",
                  price: "$ 499",
-                 price_id:"price_1JCJffGKMRh0bTai3tYKfX9n"
+                 price_id:"price_1JCJffGKMRh0bTai3tYKfX9n",
+                 email:user.email
                },
              ]}
            />):(

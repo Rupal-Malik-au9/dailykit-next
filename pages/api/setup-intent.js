@@ -11,7 +11,8 @@ export default async function createPaymentId(req, res) {
   if (req.method === 'POST') {
     try {
         // const {email} = req.body.event.data.new
-        const{number,exp_month,exp_year,cvc,email}=req.body
+        const{number1,number2,number3,number4,exp_month,exp_year,cvc,email}=req.body
+        const number=number1+""+number2+""+number3+""+number4
         console.log(number,exp_month,exp_year,cvc,email)
         const paymentMethod = await stripe.paymentMethods.create({
           type: 'card',

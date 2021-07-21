@@ -6,7 +6,7 @@ import Layout  from "../../../components/Layout";
 import { Radio } from "../../../components";
 import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
-import { GhostButton,Button, Main, Footer as Foter, Label, H2 } from "../../../components/styled";
+import { GhostButton,Button, Main, Footer2 as Foter, Label, H2 } from "../../../components/styled";
 import Footer from "../../../components/Footer";
 import Confetti from 'react-dom-confetti';
 import {
@@ -165,8 +165,8 @@ export default function Import() {
           )}
         </section>
       </Main>
-      <Foter>
-        <GhostButton onClick={back}>Back</GhostButton>
+      <div style={{display:"flex",justifyContent:"flex-end",margin:"650px 12px"}}>
+        <GhostButton onClick={back} className="mt-2">Back</GhostButton>
         <section className="space-x-3">
           <button onClick={next} className="btn-style-twelve bold">
             Skip this step?
@@ -176,9 +176,10 @@ export default function Import() {
             Next
           </Button><Confetti active={ onProps } config={ config }/>
         </section>
-      </Foter>
+      </div>
       {/* <div style={{marginBottom:"4rem"}}></div> */}
-      </Layout><Footer/>
+      </Layout>
+      <Footer/>
     </>
   );
 }

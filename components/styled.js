@@ -51,16 +51,22 @@ export const Footer = styled.footer`
    grid-area: footer;
    display:flex;
    align-items:center;
-   justify-content: flex-end;}
+   justify-content: flex-end;
+`
+export const Footer2 = styled.footer`
+  
+   grid-area: footer;
+  
 `
 
 export const Main = styled.main`
    grid-area: main;
    font-family: "Nunito", sans-serif;
-   overflow-x: hidden;
+   overflow: auto;
    background: #ffffff;
    margin: 16px 16px 0 16px;
    border: 1px solid #ececec;
+   height:80vh;
 `
 
 export const H2 = styled.h2`

@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../styles/dropdown.css";
+import "../styles/card.css";
 import Head from "next/head";
 import React from 'react';
 import { ApolloProvider } from '../lib/apollo';

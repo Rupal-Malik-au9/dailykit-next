@@ -81,7 +81,6 @@ export default function FinishSetup() {
           <GifCycle />
         )}
       </Main>
-      {/* <div style={{marginBottom:"4rem"}}></div> */}
       </Layout><Footer/>
   </div>
   );
@@ -142,7 +141,7 @@ const Installation = () => {
             placeholder="enter your subdomain"
             onChange={(e) => setName(e.target.value.trim())}
             className="input-border h-10 border-b-2 border-green-400 focus:border-green-600"
-          />
+          /><br/>
           <span className="text-left text-green-500">{name}.dailykit.org</span>
         </section>
         <div style={{marginLeft:"30rem"}}><Confetti active={ onProps } config={ config }/></div>
@@ -251,12 +250,7 @@ const RenderGif = ({ gifs }) => {
   return (
     gif && (
       <Gif
-        gif={gif}
-        width={
-          user?.organization?.onboardStatus === "FINISH_SETUP"
-            ? window.innerWidth
-            : window.innerWidth - 354
-        }
+        gif={gif} height="500px"
       />
     )
   );

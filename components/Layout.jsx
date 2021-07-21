@@ -19,11 +19,13 @@ export const Layout = ({ children, hideSteps }) => {
       if (step === 4) {
          return 21
       } else if (step === 5) {
-         return 42
+         return 36
       } else if (step === 6) {
-         return 63
+         return 52
       } else if (step === 7) {
-         return 83
+         return 70
+      }else if (step === 8) {
+         return 87
       }
    }
 
@@ -62,12 +64,15 @@ export const Layout = ({ children, hideSteps }) => {
                      </span>
                   </Styles.Step>
                   <Styles.Step className={isStepActive(5)}>
-                     <span>Onboarding Support</span>
+                     <span>Card Details</span>
                   </Styles.Step>
                   <Styles.Step className={isStepActive(6)}>
-                     <span>Import</span>
+                     <span>Onboarding Support</span>
                   </Styles.Step>
                   <Styles.Step className={isStepActive(7)}>
+                     <span>Import</span>
+                  </Styles.Step>
+                  <Styles.Step className={isStepActive(8)}>
                      <span>Finish Setup</span>
                   </Styles.Step>
                </>

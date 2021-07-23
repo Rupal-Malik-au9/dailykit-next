@@ -1169,12 +1169,6 @@ ul.link_container {
   border-radius: 5px;
   display: inline-block;
   background: #f8f8f7;
-  box-shadow: 1px 1px 2px rgb(255 255 255 / 30%),
-    -1px -1px 2px rgb(223 223 222 / 50%),
-    inset -5px 5px 10px rgb(223 223 222 / 20%),
-    inset 5px -5px 10px rgb(223 223 222 / 20%),
-    inset -5px -5px 10px rgb(255 255 255 / 90%),
-    inset 5px 5px 13px rgb(223 223 222 / 90%);
 }
 .pricing-box h4 {
   margin: 10px 0px 0px;

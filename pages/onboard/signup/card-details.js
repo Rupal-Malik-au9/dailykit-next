@@ -32,15 +32,15 @@ function Carddetails() {
   const prevPage = () => router.push("/onboard/signup/hosting");
  
   return (
-    <><Layout>
-       <h4 class="nunito text-center mt-5">Enter Your Card Details</h4>
-      <Main style={{marginTop:"50px"}}>
-      <div class="checkout">
-  <div class="credit-card-box">
-    <div class="flip">
-      <div class="front">
-        <div class="chip"></div>
-        <div class="logo">
+    <><Layout><Main>
+       <h4 className="nunito text-center">Enter Your Card Details</h4>
+      
+      <div className="checkout">
+  <div className="credit-card-box">
+    <div className="flip">
+      <div className="front">
+        <div className="chip"></div>
+        <div className="logo">
           <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style={{"enable-background":"new 0 0 47.834 47.834;"}}>
             <g>
@@ -60,19 +60,19 @@ function Carddetails() {
             </g>
           </svg>
         </div>
-        <div class="number"></div>
-        <div class="card-holder">
+        <div className="number"></div>
+        <div className="card-holder">
           <label>Card holder</label>
           <div></div>
         </div>
-        <div class="card-expiration-date">
+        <div className="card-expiration-date">
           <label>Expires</label>
           <div></div>
         </div>
       </div>
-      <div class="back">
-        <div class="strip"></div>
-        <div class="logo">
+      <div className="back">
+        <div className="strip"></div>
+        <div className="logo">
           <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style={{"enable-background":"new 0 0 47.834 47.834;"}}>
             <g>
@@ -93,29 +93,29 @@ function Carddetails() {
           </svg>
 
         </div>
-        <div class="ccv">
+        <div className="ccv">
           <label>CCV</label>
           <div></div>
         </div>
       </div>
     </div>
   </div>
-  <form class="form" autocomplete="off" novalidate action="/api/setup-intent" method="POST">
+  <form className="form" autocomplete="off" novalidate action="/api/setup-intent" method="POST">
     <fieldset>
       <label for="card-number">Card Number</label>
-      <input type="num" id="card-number" class="input-cart-number"  name="number1" maxlength="4" />
-      <input type="num" id="card-number" class="input-cart-number"  name="number2" maxlength="4" />
-      <input type="num" id="card-number" class="input-cart-number"  name="number3" maxlength="4" />
-      <input type="num" id="card-number" class="input-cart-number"  name="number4" maxlength="4" />
+      <input type="num" id="card-number" className="input-cart-number"  name="number1" maxlength="4" />
+      <input type="num" id="card-number" className="input-cart-number"  name="number2" maxlength="4" />
+      <input type="num" id="card-number" className="input-cart-number"  name="number3" maxlength="4" />
+      <input type="num" id="card-number" className="input-cart-number"  name="number4" maxlength="4" />
     </fieldset>
     <fieldset>
       <label for="card-holder">Card holder</label>
       <input type="text" id="card-holder" />
     </fieldset>
     <input type="hidden" name="email" value={user.email} />
-    <fieldset class="fieldset-expiration">
+    <fieldset className="fieldset-expiration">
       <label for="card-expiration-month">Expiration date</label>
-      <div class="select">
+      <div className="select">
         <select id="card-expiration-month" name="exp_month">
           <option></option>
           <option>01</option>
@@ -132,7 +132,7 @@ function Carddetails() {
           <option>12</option>
         </select>
       </div>
-      <div class="select">
+      <div className="select">
         <select id="card-expiration-year"  name="exp_year">
           <option></option>
           <option>2021</option>
@@ -148,11 +148,11 @@ function Carddetails() {
         </select>
       </div>
     </fieldset>
-    <fieldset class="fieldset-ccv">
+    <fieldset className="fieldset-ccv">
       <label for="card-ccv">CCV</label>
       <input type="text" id="card-ccv" name="cvc" maxlength="3" />
     </fieldset>
-    <Button class="button mt-2" type="submit" role="link" style={{background:"#8ac03b",margin:'20px 0 0px 30%',width:'140px'}} onClick={() => nextPage()}>Submit</Button>
+    <Button className="button mt-2" type="submit" role="link" style={{background:"#8ac03b",margin:'20px 0 0px 30%',width:'140px'}} onClick={() => nextPage()}>Submit</Button>
   </form>
 </div> 
       </Main>

@@ -82,7 +82,7 @@ export default function Signup() {
  <Layout>
       <Main>
         <Panel>
-          <h1 className="text-2xl mb-6">Register</h1>
+          <h1 className="text-2xl nunito" style={{"marginTop":"-10.5px"}}>Register</h1>
           <FieldSet>
             <Label htmlFor="firstName">First Name</Label>
             <Input

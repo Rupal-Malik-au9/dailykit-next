@@ -44,7 +44,7 @@ export default function Company() {
     timezone: "",
     employeesCount: "",
   });
-console.log(onProps)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((form) => ({
@@ -99,8 +99,9 @@ console.log(onProps)
       <Main>
         {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <section className="mt-3 mb-2 mx-auto w-1/4" style={{ "height": "27rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
+          <section className= "mb-2 mx-auto w-1/4" style={{ "height": "27rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
             <Form>
+            <h4 className="text-2xl nunito" style={{"marginTop":"-10.5px"}}>Enter your company details</h4>
               <Field>
                 <Label htmlFor="company">Company Name</Label>
                 <Input

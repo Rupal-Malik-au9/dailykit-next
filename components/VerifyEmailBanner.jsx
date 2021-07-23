@@ -47,6 +47,7 @@ const Styles = {
     font-family: "Nunito", sans-serif;
     height: 6rem;
     color: rgba(255, 255, 255, 1);
+    margin-bottom:2rem;
     grid-template-columns: 96px 1fr;
     @media (max-width: 479px) {
       height: 12rem;

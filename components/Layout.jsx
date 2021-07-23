@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import Header from './sections/Header'
+import Navbar from './Navbar';
 import { useAuth } from '../store/auth'
 
 export const Layout = ({ children, hideSteps }) => {
@@ -36,7 +36,7 @@ export const Layout = ({ children, hideSteps }) => {
 
    return (
       <Styles.Wrapper step={onboard.step} hideSteps={hideSteps} style={{marginTop:"6rem"}} className="wrapper">
-         <Header />
+         <Navbar/>
          <Styles.Aside hideSteps={hideSteps} className="progressBar">
             <Styles.Stage height1={evalHeightFirst(onboard.step)}>
                Basic Information
@@ -90,7 +90,6 @@ const Styles = {
       height: 100vh;
       display: grid;
       overflow: hidden;
-      background: #fafafa;
       @media (max-width: 479px) {
          display: inline-block;
       overflow:visible;
@@ -104,18 +103,19 @@ const Styles = {
               `
             : css`
                  grid-template-rows: ${({ step }) =>
-                    step === 7 ? '40px 1fr 16px' : '40px 1fr 100px'};
-                 grid-template-columns: 1fr 320px;
+                    step === 8 ? '40px 1fr 16px' : '40px 1fr 100px'};
+                 grid-template-columns: 320px 1fr;
                  grid-template-areas: ${({ step }) =>
-                    step === 7
-                       ? `'head head' 'main aside'`
-                       : `'head head' 'main aside' 'footer aside'`};
+                    step === 8
+                       ? `'head head' 'aside main'`
+                       : `'head head' 'aside main' 'aside footer'`};
               `}
    `,
    Aside: styled.aside`
       grid-area: aside;
       flex-direction: column;
       padding-top: 16px;
+      padding-left:52px;
       display: ${({ hideSteps }) => (hideSteps ? 'none' : 'flex')};
       @media (max-width: 479px) {
          display: inline-block;

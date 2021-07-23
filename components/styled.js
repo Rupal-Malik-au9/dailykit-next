@@ -33,6 +33,7 @@ line-height: 1.25rem;
 border:2px solid #8ac03b;
 padding-left: 1rem;
 padding-right: 1rem;
+margin-right:2rem;
 height: 2.5rem;
 border-radius: 9999px;
 
@@ -50,13 +51,7 @@ export const Footer = styled.footer`
    font-family: "Nunito", sans-serif;
    grid-area: footer;
    display:flex;
-   align-items:center;
-   justify-content: flex-end;
-`
-export const Footer2 = styled.footer`
-  
-   grid-area: footer;
-  
+   justify-content: center;
 `
 
 export const Main = styled.main`
@@ -65,7 +60,6 @@ export const Main = styled.main`
    overflow: auto;
    background: #ffffff;
    margin: 16px 16px 0 16px;
-   border: 1px solid #ececec;
    height:80vh;
 `
 
@@ -109,7 +103,6 @@ font-family: "Nunito", sans-serif;
 `
 
 export const Field = styled.div`
-
 margin-top: 1.5rem;
 font-family: "Nunito", sans-serif;
    input {

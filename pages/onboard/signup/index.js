@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useLazyQuery } from "@apollo/client";
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import { Label, Main } from "../../../components/styled";
+import { Label, Main,Input,Field } from "../../../components/styled";
 import * as utils from "../../../utils";
 import { useAuth } from "../../../store/auth";
 import { ADMIN_EXISTS } from "../../../graphql";
@@ -81,51 +81,56 @@ export default function Signup() {
    <>
  <Layout>
       <Main>
-        <Panel>
-          <h1 className="text-2xl nunito" style={{"marginTop":"-10.5px"}}>Register</h1>
-          <FieldSet>
+        <Panel style={{fontWeight:"bold"}}>
+          <h2 className="text-2xl" style={{"marginTop":"23px",fontWeight:"bold"}}>Register</h2>
+          <Field style={{"marginTop":"0.5rem"}}>
             <Label htmlFor="firstName">First Name</Label>
             <Input
               type="firstName"
               name="firstName"
+              id="firstName"
+              required
               value={form.firstName}
               onChange={onChange}
               placeholder="Enter your first name"
             />
-          </FieldSet>
-          <FieldSet>
+          </Field>
+          <Field style={{"marginTop":"0.5rem"}}>
             <Label htmlFor="lastName">Last Name</Label>
             <Input
               type="lastName"
               name="lastName"
+              required
               value={form.lastName}
               onChange={onChange}
               placeholder="Enter your last name"
             />
-          </FieldSet>
-          <FieldSet>
+          </Field>
+          <Field style={{"marginTop":"0.5rem"}}>
             <Label htmlFor="email">Email</Label>
             <Input
               type="email"
               name="email"
               value={form.email}
+              required
               onChange={onChange}
               placeholder="Enter your email"
-              onBlur={(e) => handleEmailExists(e.target.value)}
+              onBlur={(e) => handleEmailExists(e.target.value.trim())}
             />
-          </FieldSet>
-          <FieldSet>
+          </Field>
+          <Field style={{"marginTop":"0.5rem"}}>
             <Label htmlFor="password">Password</Label>
             <Input
               name="password"
               type="password"
+              required
               onChange={onChange}
               value={form.password}
               placeholder="Enter your password"
             />
-          </FieldSet>
+          </Field>
           <Link href="/onboard/login">
-            <button className="bold" style={{ "marginLeft": "-13rem" }}>
+            <button className="bold" style={{margin:"0.4rem 0 0.4rem -13rem" }}>
               Login instead?
             </button>
           </Link>
@@ -138,7 +143,7 @@ export default function Signup() {
             {submitting ? "Submitting" : "Submit"}
           </Submit>
           {error && (
-            <span className="self-start block text-red-500 mt-2">{error}</span>
+            <Error>{error}</Error>
           )}
         </Panel>
       </Main>
@@ -160,29 +165,37 @@ padding-top: 0.5rem;
 padding-bottom: 0.5rem;
 `;
 
-const FieldSet = styled.fieldset`
-width: 100%;
-display: flex;
-flex-direction: column;
-margin-bottom: 1rem;
-`;
 
-const Input = styled.input`
-width: 100%;
+const Error=styled.span`
+justify-self: start;
 display: block;
-border-width: 1px;
-height: 2.5rem;
-border-radius: 0.25rem;
-padding-left: 0.5rem;
-padding-right: 0.5rem;
-outline: 2px solid transparent;
-outline-offset: 2px;
-&:focus {
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgba(96, 165, 250, var(--tw-border-opacity));
-}
-`;
+--tw-text-opacity: 1;
+color: rgba(239, 68, 68, var(--tw-text-opacity));
+margin-top: 0.5rem;
+`
+// const Field = styled.fieldset`
+// width: 100%;
+// display: flex;
+// flex-direction: column;
+// margin-bottom: 0.5rem;
+// `;
+
+// const Input = styled.input`
+// width: 100%;
+// display: block;
+// border-width: 1px;
+// height: 2.5rem;
+// border-radius: 0.25rem;
+// padding-left: 0.5rem;
+// padding-right: 0.5rem;
+// outline: 2px solid transparent;
+// outline-offset: 2px;
+// &:focus {
+//   border-width: 2px;
+//   --tw-border-opacity: 1;
+//   border-color: rgba(96, 165, 250, var(--tw-border-opacity));
+// }
+// `;
 
 const Submit = styled.button`
 width: 100%;

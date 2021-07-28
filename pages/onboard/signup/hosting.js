@@ -19,7 +19,7 @@ export default function Hosting() {
           <Layout>
             <Main>
               {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
-              <section className="mt-3 mx-auto w-2/4">
+              <section className="mt-4 mx-auto w-2/4">
                 <H2>Hosting</H2>
                 <Radio>
                   <Radio.Option
@@ -43,7 +43,8 @@ export default function Hosting() {
               <h3 className="price-heading">Choose your plan</h3>
               </div>
                 {option === "cloud" ? (
-                  <PricingSection1 
+                  <PricingSection1
+                    paddingBottom={"0px"}
                     marginHeight={"-80px"}
                     offers={[
                       {
@@ -53,7 +54,7 @@ export default function Hosting() {
                         email: user.email,
                         box_shadow: '1px 1px 2px rgb(255 255 255 / 30%),-1px -1px 2px rgb(223 223 222 / 50%),inset -5px 5px 10px rgb(223 223 222 / 20%),inset 5px -5px 10px rgb(223 223 222 / 20%),inset -5px -5px 10px rgb(255 255 255 / 90%),inset 5px 5px 13px rgb(223 223 222 / 90%)',
                       	onSelect:onSelect1,
-    			setOnSelect:setOnSelect1,
+    			              setOnSelect:setOnSelect1,
                         resetOnSelect2:setOnSelect2,
                         resetOnSelect3:setOnSelect3,
                       },

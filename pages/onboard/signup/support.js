@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-
+import Image from "next/image";
 import {
   Tip,
   Info,
@@ -108,12 +108,19 @@ export default function Support() {
         </section>
 
       </Main>
-      <Foter>
-        <GhostButton onClick={() => prevPage()}>Back</GhostButton>
+      <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
+        <GhostButton onClick={() => prevPage()} style={{"marginLeft":"10px"}}>Back</GhostButton>
         <Button
           onClick={() => nextPage()}
+          style={{"marginLeft":"60rem",marginTop:"-1.5px"}}
         >
-          Next
+          Next <Image
+        height="12px"
+        src="/assets/icons/arrow.png"
+        alt="icon"
+        width="16px"
+        className="ml-4"
+      />
         </Button> <Confetti active={ onProps } config={ config }/>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}

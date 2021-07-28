@@ -4,7 +4,7 @@ import { Gif } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 
 import Layout  from "../../../components/Layout";
-import { Button, Main } from "../../../components/styled";
+import { Button, H2, Main } from "../../../components/styled";
 import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
@@ -124,10 +124,10 @@ const Installation = () => {
   };
   return (
     <div className="flex-container" style={{ display: "flex", justifyContent: "center", margin: "2rem 0 2rem" }}>
-      <div className="finishSetupSection mt-3 mx-auto text-center">
-        <h2 className="text-3xl text-green-700 mb-4">Customize your URL</h2>
-        <p className="text-center text-gray-500 mb-2">
-          This is where you will access your apps and manage your team. Make sure
+      <div className="finishSetupSection mt-3 mx-auto text-center" >
+        <h2 className="text-2xl" style={{"marginTop":"23px",fontWeight:"bold"}}>Customize your URL</h2>
+        <p className="text-center text-gray-500 mb-2" >
+          This is where you will access your apps and manage your team.<br/> Make sure
           to bookmark it once you’re inside.
         </p>
         <section className="mb-3 flex flex-col items-center">
@@ -138,13 +138,14 @@ const Installation = () => {
             name="name"
             value={name}
             autoComplete="off"
-            placeholder="enter your subdomain"
+            placeholder="Enter your subdomain"
             onChange={(e) => setName(e.target.value.trim())}
             className="input-border h-10 border-b-2 border-green-400 focus:border-green-600"
           /><br/>
           <span className="text-left text-green-500">{name}.dailykit.org</span>
+          <div style={{marginLeft:"10rem"}}><Confetti active={ onProps } config={ config }/></div>
         </section>
-        <div style={{marginLeft:"30rem"}}><Confetti active={ onProps } config={ config }/></div>
+        
         <Button
           onClick={submit}
           disabled={!name || !user?.keycloak?.email_verified || loading}
@@ -213,16 +214,16 @@ const GifCycle = () => {
         </header>
       ) : (
         <header className="text-left p-3 absolute z-10 inset-0 h-full">
-          <h1 className="text-2xl font-medium text-black ">
+          <h2 className="text-2xl text-center" style={{fontWeight:"bold"}}>
             Setting up your instance!
-          </h1>
-          <p className="mt-1 text-black leading-5">
+          </h2>
+          <p className="mt-1 text-center leading-5">
             This could take a while. In the meantime, enjoy this GIF sequence
             we've curated for you.
           </p>
         </header>
       )}
-      <section>{gifs.length > 0 && <RenderGif gifs={gifs} />}</section>
+      <section style={{marginLeft:"25%",maxWidth:"50vw"}}>{gifs.length > 0 && <RenderGif gifs={gifs} />}</section>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-
+import Image from "next/image";
 import Layout  from "../../../components/Layout";
 import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
@@ -105,7 +105,6 @@ export default function AboutYourself() {
                   id="designation"
                   name="designation"
                   value={form.designation}
-                  autoComplete="off"
                   placeholder="Enter your designation"
                   onChange={(e) => handleChange(e)}
                 />
@@ -117,8 +116,8 @@ export default function AboutYourself() {
                   id="phoneNumber"
                   name="phoneNumber"
                   required
+                  minlength="10"
                   value={form.phoneNumber}
-                  autoComplete="off"
                   onChange={(e) => handleChange(e)}
                   placeholder="Enter your phone number"
                 />
@@ -127,9 +126,15 @@ export default function AboutYourself() {
           </section>
         </div>
       </Main>
-      <Foter>
-        <GhostButton onClick={() => history.push("/onboard/signup/company")}>Back</GhostButton>
-        <Button onClick={submit} disabled={!form.designation || !form.phoneNumber}>Next</Button>
+      <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
+        <GhostButton onClick={() => history.push("/onboard/signup/company")}  style={{"marginLeft":"10px"}}>Back</GhostButton>
+        <Button onClick={submit} disabled={!form.designation || !form.phoneNumber} style={{"marginLeft":"60rem",marginTop:"-1.5px"}}>Next <Image
+            height="12px"
+            src="/assets/icons/arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          /></Button>
         <Confetti active={ onProps } config={ config }/>
       </Foter>
       {/* <div style={{marginBottom:"4rem"}}></div> */}

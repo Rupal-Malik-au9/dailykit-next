@@ -50,7 +50,7 @@ export default function Login() {
     <>
     <Layout_2>
       <Panel>
-        <h1 className="text-2xl mb-6">Login</h1>
+        <h1 className="text-2xl mb-6 nunito" style={{"fontWeight":"bold"}}>Login</h1>
         <FieldSet>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -86,7 +86,7 @@ export default function Login() {
         </Submit>
         {error && <Error>{error}</Error>}
       </Panel>
-      {/* <div style={{marginBottom:"4rem"}}></div> */}
+      <div style={{marginBottom:"4rem"}}></div>
       </Layout_2>
       <Footer/>
       </>
@@ -114,6 +114,8 @@ margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
+font-weight: bold;
+font-family:nunito;
 --tw-text-opacity: 1;
 color: rgba(75, 85, 99, var(--tw-text-opacity));
 margin-bottom: 0.25rem;

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import moment from "moment-timezone";
 import styled from "styled-components";
 import { useMutation } from "@apollo/client";
@@ -13,8 +14,8 @@ import {
 
 import { Footer as Foter, Main, Field, Label, Form, Button, H2, Input } from "../../../components/styled";
 
-import  Footer from "../../../components/Footer";
-import Layout  from "../../../components/Layout";
+import Footer from "../../../components/Footer";
+import Layout from "../../../components/Layout";
 import { useAuth } from "../../../store/auth";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
@@ -26,7 +27,7 @@ export default function Company() {
   const history = useRouter();
   const [tzSearch, setTzSearch] = React.useState("");
   const { timezones } = useTimezones(tzSearch);
-  const [onProps,setOnProps] = React.useState(false);
+  const [onProps, setOnProps] = React.useState(false);
   const [currencySearch, setCurrencySearch] = React.useState("");
   const { list: currencies } = useCurrencies(currencySearch);
   const [update] = useMutation(UPDATE_ORGANIZATION, {
@@ -92,160 +93,168 @@ export default function Company() {
     });
     setOnProps(true)
   };
-
+{console.log(user)}
   return (
     <>
-    <Layout>
-      <Main>
-        {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <section className= "mb-2 mx-auto w-1/4" style={{ "height": "27rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
-            <Form>
-            <h4 className="text-2xl nunito" style={{"marginTop":"-10.5px"}}>Enter your company details</h4>
-              <Field>
-                <Label htmlFor="company">Company Name</Label>
-                <Input
-                  type="text"
-                  id="company"
-                  name="company"
-                  required
-                  value={form.company}
-                  autoComplete="off"
-                  placeholder="Enter your company's name"
-                  onChange={(e) => handleChange(e)}
-                />
-              </Field>
-              <Field>
-                <Label htmlFor="currency">Currency</Label>
-                <Combobox
-                  aria-label="Currencies"
-                  onSelect={(item) =>
-                    handleChange({
-                      target: { name: "currency", value: item },
-                    })
-                  }
-                >
-                  <StyledComboboxInput
-                    value={form.currency}
-                    placeholder="Select Currency"
-                    onChange={(e) => {
-                      setCurrencySearch(e.target.value);
-                      handleChange({
-                        target: {
-                          name: "currency",
-                          value: e.target.value,
-                        },
-                      });
-                    }}
+      <Layout>
+        <Main>
+          {!user?.keycloak?.email_verified && <VerifyEmailBanner />}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <section className="mb-2 mx-auto w-1/4" style={{ "height": "27rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
+              <Form style={{ fontWeight: "bold" }}>
+                <h4 className="text-2xl nunito" style={{ "marginTop": "-10.5px", fontWeight: "bold" }}>Enter your company details</h4>
+                <Field>
+                  <Label htmlFor="company">Company Name</Label>
+                  <Input
+                    type="text"
+                    id="company"
+                    name="company"
+                    required
+                    value={form.company}
+                    placeholder="Enter your company's name"
+                    onChange={(e) => handleChange(e)}
                   />
-                  {currencies.length > 0 && (
-                    <StyledComboboxPopover portal={false}>
-                      {currencies.length > 0 ? (
-                        <ComboboxList>
-                          {currencies.map((node) => {
-                            return (
-                              <ComboboxOption
-                                key={node.title}
-                                value={node.value}
-                                placeholder="Select a currency"
-                              />
-                            );
-                          })}
-                        </ComboboxList>
-                      ) : (
-                        <span
-                          style={{
-                            display: "block",
-                            margin: 8,
-                          }}
-                        >
-                          No results found
-                        </span>
-                      )}
-                    </StyledComboboxPopover>
-                  )}
-                </Combobox>
-              </Field>
-              <Field>
-                <Label htmlFor="timezone">Time Zone</Label>
-                <Combobox
-                  aria-label="Timezones"
-                  onSelect={(item) =>
-                    handleChange({
-                      target: { name: "timezone", value: item },
-                    })
-                  }
-                >
-                  <StyledComboboxInput
-                    value={form.timezone}
-                    placeholder="Select Timezone"
-                    onChange={(e) =>
-                      setTzSearch(e.target.value) ||
+                </Field>
+                <Field>
+                  <Label htmlFor="currency">Currency</Label>
+                  <Combobox
+                    aria-label="Currencies"
+                    onSelect={(item) =>
                       handleChange({
-                        target: {
-                          name: "timezone",
-                          value: e.target.value,
-                        },
+                        target: { name: "currency", value: item },
                       })
                     }
-                  />
-                  {timezones.length > 0 && (
-                    <StyledComboboxPopover portal={false}>
-                      {timezones.length > 0 ? (
-                        <ComboboxList>
-                          {timezones.map((timezone) => {
-                            return (
-                              <ComboboxOption
-                                key={timezone.title}
-                                value={timezone.title}
-                                placeholder="Select a timezone"
-                              />
-                            );
-                          })}
-                        </ComboboxList>
-                      ) : (
-                        <span
-                          style={{
-                            display: "block",
-                            margin: 8,
-                          }}
-                        >
-                          No results found
-                        </span>
-                      )}
-                    </StyledComboboxPopover>
-                  )}
-                </Combobox>
-              </Field>
-              <Field>
-                <Label htmlFor="employeesCount">No. of Employees</Label>
-                <select
-                  name="employeesCount"
-                  id="employeesCount"
-                  value={form.employeesCount}
-                  onChange={(e) => handleChange(e)}
-                >
-                  <option value="5">5-10</option>
-                  <option value="10">10-20</option>
-                  <option value="20">20-50</option>
-                  <option value="50">50-100</option>
-                  <option value="100">100-500</option>
-                  <option value="500">500+</option>
-                </select>
-              </Field>
-            </Form>
-          </section>
-        </div>
-      </Main>
-      <Foter>
-        <span />
-        <Button onClick={save} disabled={!form.company}>Next</Button>
-        <Confetti active={ onProps } config={ config }/>
-      </Foter>
-      {/* <div style={{marginBottom:"4rem"}}></div> */}
+                  >
+                    <StyledComboboxInput
+                      value={form.currency}
+                      placeholder="Select Currency"
+                      onChange={(e) => {
+                        setCurrencySearch(e.target.value.trim());
+                        handleChange({
+                          target: {
+                            name: "currency",
+                            value: e.target.value.trim(),
+                          },
+                        });
+                      }}
+                    />
+                    {currencies.length > 0 && (
+                      <StyledComboboxPopover portal={false}>
+                        {currencies.length > 0 ? (
+                          <ComboboxList>
+                            {currencies.map((node) => {
+                              return (
+                                <ComboboxOption
+                                  key={node.title}
+                                  value={node.value}
+                                  placeholder="Select a currency"
+                                />
+                              );
+                            })}
+                          </ComboboxList>
+                        ) : (
+                          <span
+                            style={{
+                              display: "block",
+                              margin: 8,
+                            }}
+                          >
+                            No results found
+                          </span>
+                        )}
+                      </StyledComboboxPopover>
+                    )}
+                  </Combobox>
+                </Field>
+                <Field>
+                  <Label htmlFor="timezone">Time Zone</Label>
+                  <Combobox
+                    aria-label="Timezones"
+                    onSelect={(item) =>
+                      handleChange({
+                        target: { name: "timezone", value: item },
+                      })
+                    }
+                  >
+                    <StyledComboboxInput
+                      value={form.timezone}
+                      placeholder="Select Timezone"
+                      onChange={(e) =>
+                        setTzSearch(e.target.value.trim()) ||
+                        handleChange({
+                          target: {
+                            name: "timezone",
+                            value: e.target.value.trim(),
+                          },
+                        })
+                      }
+                    />
+                    {timezones.length > 0 && (
+                      <StyledComboboxPopover portal={false}>
+                        {timezones.length > 0 ? (
+                          <ComboboxList>
+                            {timezones.map((timezone) => {
+                              return (
+                                <ComboboxOption
+                                  key={timezone.title}
+                                  value={timezone.title}
+                                  placeholder="Select a timezone"
+                                />
+                              );
+                            })}
+                          </ComboboxList>
+                        ) : (
+                          <span
+                            style={{
+                              display: "block",
+                              margin: 8,
+                            }}
+                          >
+                            No results found
+                          </span>
+                        )}
+                      </StyledComboboxPopover>
+                    )}
+                  </Combobox>
+                </Field>
+                <Field>
+                  <Label htmlFor="employeesCount">No. of Employees</Label>
+                  <select
+                    name="employeesCount"
+                    id="employeesCount"
+                    value={form.employeesCount}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    <option value="5">5-10</option>
+                    <option value="10">10-20</option>
+                    <option value="20">20-50</option>
+                    <option value="50">50-100</option>
+                    <option value="100">100-500</option>
+                    <option value="500">500+</option>
+                  </select>
+                </Field>
+              </Form>
+            </section>
+          </div>
+        </Main>
+        <Foter>
+        <Confetti active={onProps} config={config} />
+          <Button onClick={save} disabled={!form.company} style={{ "fontWeight": "bold",marginTop:"-100px" }}>Next &nbsp;
+            <Image
+            height="12px"
+            src="/assets/icons/arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          />
+          </Button>
+         
+        </Foter>
+        
       </Layout>
+      {/* <div style={{marginBottom:"4rem"}}></div> */}
       <Footer />
-      </>
+    </>
   );
 };
 

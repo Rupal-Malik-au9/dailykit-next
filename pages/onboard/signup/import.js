@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 
+import Image from "next/image";
 import Layout  from "../../../components/Layout";
 import { Radio } from "../../../components";
 import { useAuth } from "../../../store/auth";
@@ -126,12 +127,12 @@ export default function Import() {
             <div style={{ display: "flex", justifyContent: "center", margin: "2rem 0 2rem" }}>
               <section className="mt-4 space-y-3">
                 <fieldset className="flex flex-col">
-                  <Label htmlFor="marketPlaceCompany">Select Company</Label>
+                  <Label htmlFor="marketPlaceCompany">Select Company : &nbsp;</Label>
                   <select
                     value={title}
                     id="marketPlaceCompany"
                     name="marketPlaceCompany"
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value.trim())}
                     className="h-10 border rounded pl-2 w-64"
                   >
                     {companies.map((company) => (
@@ -142,13 +143,13 @@ export default function Import() {
                   </select>
                 </fieldset>
                 <fieldset className="flex flex-col justify-content-around">
-                  <Label htmlFor="menuUrl">Menu URL</Label>
+                  <Label htmlFor="menuUrl">Menu URL : &nbsp;</Label>
                   <input
                     id="menuUrl"
                     value={url}
                     name="menuUrl"
                     placeholder="Enter menu url"
-                    onChange={(e) => setUrl(e.target.value)}
+                    onChange={(e) => setUrl(e.target.value.trim())}
                     className="input-border"
                   />
                 </fieldset>
@@ -161,19 +162,25 @@ export default function Import() {
             </div>
           )}
           {option === "demo" && (
-            <section className="mt-3">Coming Soon!</section>
+            <section className="mt-3 text-center">Coming Soon!</section>
             )}
             </section>
           </Main>
-          <Foter>
-            <GhostButton onClick={back}>Back</GhostButton>
-            <section className="space-x-3">
+          <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
+            <GhostButton onClick={back}  style={{"marginLeft":"10px"}}>Back</GhostButton>
+            <section className="space-x-3" style={{marginTop:"-9px"}}>
               <button onClick={next} className="btn-style-twelve bold">
                 Skip this step?
           </button>
           
-          <Button type="button" onClick={onSubmit} disabled={!url || loading}>
-            Next
+          <Button type="button" onClick={onSubmit} disabled={!url || loading} >
+            Next<Image
+            height="12px"
+            src="/assets/icons/arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          />
           </Button><Confetti active={ onProps } config={ config }/>
         </section>
       </Foter>

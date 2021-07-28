@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-
+import Image from "next/image";
 import { useAuth } from "../store/auth";
 import { VerifyEmailIcon } from "../assets/icons";
 
@@ -24,14 +24,15 @@ const VerfiyEmailBanner = () => {
       </Styles.Aside>
       <Styles.Main>
         <section>
-          <h3>Verification mail sent!</h3>
+          <h3>Verification mail sent !</h3>
           <p>
             We need to verify your email address. Please check your inbox for a
             message from us. You’ll find the confirmation link inside.
           </p>
+        
         </section>
         <section>
-          <button onClick={resend}>Resend</button>
+      <button onClick={resend}>Resend</button>
         </section>
       </Styles.Main>
     </Styles.Banner>
@@ -43,11 +44,11 @@ export default VerfiyEmailBanner;
 const Styles = {
   Banner: styled.div`
     display: grid;
-    background: #555b6e;
+    background: #111b2b;
+    margin-bottom: 2rem;
     font-family: "Nunito", sans-serif;
     height: 6rem;
     color: rgba(255, 255, 255, 1);
-    margin-bottom:2rem;
     grid-template-columns: 96px 1fr;
     @media (max-width: 479px) {
       height: 12rem;
@@ -66,7 +67,6 @@ const Styles = {
     display: grid;
     font-family: "Nunito", sans-serif;
     padding-right: 16px;
-    margin-top: -1rem;
     grid-template-columns: 1fr auto;
     align-items: center;
 
@@ -82,7 +82,7 @@ const Styles = {
       line-height: 1.25rem;
     }
     button {
-      background: #00a7e1;
+      background: #111b2b;
       color: white;
       font-family: "Nunito", sans-serif;
       border-radius: 9999px;
@@ -90,6 +90,7 @@ const Styles = {
       padding-right: 1.5rem;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
+      border: 1px solid white;
     }
     @media (max-width: 479px) {
     button{

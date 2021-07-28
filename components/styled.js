@@ -51,7 +51,7 @@ export const Footer = styled.footer`
    font-family: "Nunito", sans-serif;
    grid-area: footer;
    display:flex;
-   justify-content: center;
+   justify-content: flex-end;
 `
 
 export const Main = styled.main`
@@ -59,14 +59,14 @@ export const Main = styled.main`
    font-family: "Nunito", sans-serif;
    overflow: auto;
    background: #ffffff;
-   margin: 16px 16px 0 16px;
-   height:80vh;
+   margin: 16px 0px 0 16px;
+   height:90vh;
 `
 
 export const H2 = styled.h2`
    text-align:center;
    font-size: 20px;
-   font-weight: 400;
+   font-weight: 800;
    font-family: "Nunito", sans-serif;
    color: #555b6e;
    margin-bottom: 24px;
@@ -139,6 +139,7 @@ color: rgba(75, 85, 99, var(--tw-text-opacity));
 margin-top: 0.5rem;
 margin-bottom:0.5rem;
 font-family: "Nunito", sans-serif;
+font-weight: bold;
 `
 
 export const CheckBoxWrapper = styled.div`

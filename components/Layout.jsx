@@ -35,7 +35,7 @@ export const Layout = ({ children, hideSteps }) => {
    }
 
    return (
-      <Styles.Wrapper step={onboard.step} hideSteps={hideSteps} style={{marginTop:"6rem"}} className="wrapper">
+      <Styles.Wrapper step={onboard.step} hideSteps={hideSteps} className="wrapper">
          <Navbar/>
          <Styles.Aside hideSteps={hideSteps} className="progressBar">
             <Styles.Stage height1={evalHeightFirst(onboard.step)}>
@@ -87,9 +87,11 @@ export default Layout
 
 const Styles = {
    Wrapper: styled.div`
+   font-family:nunito;
       height: 100vh;
       display: grid;
       overflow: hidden;
+      margin-top: 2rem;
       @media (max-width: 479px) {
          display: inline-block;
       overflow:visible;
@@ -98,12 +100,12 @@ const Styles = {
          hideSteps
             ? css`
                  grid-template-columns: 1fr;
-                 grid-template-rows: 40px 1fr 16px;
+                 grid-template-rows: 60px 1fr 16px;
                  grid-template-areas: 'head' 'main';
               `
             : css`
                  grid-template-rows: ${({ step }) =>
-                    step === 8 ? '40px 1fr 16px' : '40px 1fr 100px'};
+                    step === 8 ? '60px 1fr 16px' : '60px 1fr 100px'};
                  grid-template-columns: 320px 1fr;
                  grid-template-areas: ${({ step }) =>
                     step === 8
@@ -114,8 +116,10 @@ const Styles = {
    Aside: styled.aside`
       grid-area: aside;
       flex-direction: column;
-      padding-top: 16px;
+      padding-top: 56px;
+      color: #fff;
       padding-left:52px;
+      background-color:#111b2b;
       display: ${({ hideSteps }) => (hideSteps ? 'none' : 'flex')};
       @media (max-width: 479px) {
          display: inline-block;
@@ -127,7 +131,7 @@ const Styles = {
       ({ height1, height2 }) => css`
          font-size: 24px;
          line-height: 16px;
-         color: #555b6e;
+         color: #fff;
          margin-bottom: 48px;
          padding: 0 16px 0 24px;
          position: relative;
@@ -138,7 +142,7 @@ const Styles = {
             left: 4px;
             width: 2px;
             z-index: 100;
-            background: #04a777;
+            background: #8ac03b;
          }
          &::after {
             content: '';
@@ -148,7 +152,7 @@ const Styles = {
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: #fafafa;
+            background: #8ac03b;
          }
          &:first-child {
             &::before {
@@ -156,7 +160,7 @@ const Styles = {
             }
             &::after {
                border: ${height1 > 0
-                  ? `2px solid #04A777`
+                  ? `2px solid #8ac03b`
                   : `2px solid #C3C6CE`};
             }
          }
@@ -166,7 +170,7 @@ const Styles = {
             }
             &::after {
                border: ${height2 > 0
-                  ? `2px solid #04A777`
+                  ? `2px solid #8ac03b`
                   : `2px solid #C3C6CE`};
             }
          }
@@ -205,7 +209,7 @@ const Styles = {
       }
       &.active {
          &::after {
-            background: #04a777;
+            background: #8ac03b;
          }
       }
       span.price {

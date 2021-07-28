@@ -30,11 +30,11 @@ const [update] = useMutation(UPDATE_ORGANIZATION, {
       console.log(user)
     };
   return (
-    <div className="nunito pricingsection1">
-      {props.marginHeight && <div style={{ marginTop: props.marginHeight }} />}
+    <div className="nunito pricingsection1" style={{paddingBottom:props?.paddingBottom}}>
+      {props.marginHeight && <div style={{ marginTop: props.marginHeight}}  />}
       {props.heading && <h6 className="price-heading">{props.heading}</h6>}
       {props.subheading && <h6 className="price-subheading">{props.subheading}</h6>}
-      <div className="container">
+      <div className="container mb-1">
         <div className="row justify-content-center">
           {props.offers.map((offer) => {
             return (

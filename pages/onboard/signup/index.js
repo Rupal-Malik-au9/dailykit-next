@@ -14,6 +14,7 @@ export default function Signup() {
   const router = useRouter();
   const { dispatch } = useAuth();
   const [error, setError] = React.useState("");
+  const [error2, setError2] = React.useState("");
   const [email, validEmail] = React.useState(true);
   const [FirstName, validFirstName] = React.useState(true);
   const [LastName, validLastName] = React.useState(true);
@@ -58,7 +59,10 @@ export default function Signup() {
       form.firstName && validFirstName(validator.isAlpha(form.firstName));
       form.lastName && validLastName(validator.isAlpha(form.lastName));
     if(!email || !FirstName || !LastName) {
-      setError("Please check your credientials"); 
+      setError2("Please check your credientials"); 
+    }
+    else { 
+      setError2("");
     }
   })
 
@@ -160,6 +164,9 @@ export default function Signup() {
           </Submit>
           {error && (
             <Error>{error}</Error>
+          )}
+          {error2 && (
+            <Error>{error2}</Error>
           )}
         </Panel>
       </Main>

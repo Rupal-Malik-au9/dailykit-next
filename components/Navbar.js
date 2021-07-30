@@ -543,7 +543,7 @@ export const Navbar = () => {
                     </a>)}
                 </li>
               ) : (
-                user.organization && user.organization.onboardStatus != "FINISH_SETUP" ? (
+                user?.organization?.onboardStatus && user.organization.onboardStatus != "FINISH_SETUP" ? (
                   <li className="nav-item">
                     <a className="nav-link"
                       style={{

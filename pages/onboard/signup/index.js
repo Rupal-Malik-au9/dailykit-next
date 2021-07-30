@@ -9,17 +9,22 @@ import { useAuth } from "../../../store/auth";
 import { ADMIN_EXISTS } from "../../../graphql";
 import  Footer from "../../../components/Footer";
 import Layout  from "../../../components/Layout";
+var validator = require('validator');
 export default function Signup() {
   const router = useRouter();
   const { dispatch } = useAuth();
   const [error, setError] = React.useState("");
+  const [email, validEmail] = React.useState(true);
+  const [FirstName, validFirstName] = React.useState(true);
+  const [LastName, validLastName] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
   const [check_email] = useLazyQuery(ADMIN_EXISTS, {
-
+  
     onCompleted: ({ admins = [] }) => {
       if (admins.length > 0) {
         setError("Email already exists!");
-      } else {
+      } 
+      else {
         setError("");
       }
     },
@@ -40,12 +45,22 @@ export default function Signup() {
     !error;
 
   const onChange = (e) => {
+  
     const { name, value } = e.target;
     setForm((form) => ({
       ...form,
       [name]: value,
     }));
   };
+   // for validation
+  React.useEffect(() => {
+      form.email && validEmail(validator.isEmail(form.email));
+      form.firstName && validFirstName(validator.isAlpha(form.firstName));
+      form.lastName && validLastName(validator.isAlpha(form.lastName));
+    if(!email || !FirstName || !LastName) {
+      setError("Please check your credientials"); 
+    }
+  })
 
   const submit = async () => {
     setSubmitting(true);
@@ -76,7 +91,8 @@ export default function Signup() {
 
   const handleEmailExists = (value) =>
     check_email({ variables: { where: { email: { _eq: value } } } });
-
+   
+  
   return (
    <>
  <Layout>
@@ -138,7 +154,7 @@ export default function Signup() {
             style={{ marginTop: "0.2rem" }}
             className={!isValid || submitting ? "disabled" : ""}
             onClick={() => (isValid || !submitting) && submit()}
-            disabled={!form.firstName || !form.lastName || !form.email || !form.password}
+            disabled={!form.firstName || !form.lastName || !form.email || !form.password ||!email || !FirstName || !LastName}
           >
             {submitting ? "Submitting" : "Submit"}
           </Submit>

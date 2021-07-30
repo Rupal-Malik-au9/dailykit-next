@@ -109,10 +109,16 @@ export default function Support() {
 
       </Main>
       <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
-        <GhostButton onClick={() => prevPage()} style={{"marginLeft":"10px"}}>Back</GhostButton>
+        <GhostButton onClick={() => prevPage()} style={{"marginLeft":"10px"}}><Image
+            height="12px"
+            src="/assets/icons/green-arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          />&nbsp;Back</GhostButton>
         <Button
           onClick={() => nextPage()}
-          style={{"marginLeft":"60rem",marginTop:"-1.5px"}}
+          style={{"marginLeft":"58rem",marginTop:"-1.5px"}}
         >
           Next <Image
         height="12px"

@@ -127,8 +127,14 @@ export default function AboutYourself() {
         </div>
       </Main>
       <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
-        <GhostButton onClick={() => history.push("/onboard/signup/company")}  style={{"marginLeft":"10px"}}>Back</GhostButton>
-        <Button onClick={submit} disabled={!form.designation || !form.phoneNumber} style={{"marginLeft":"60rem",marginTop:"-1.5px"}}>Next <Image
+        <GhostButton onClick={() => history.push("/onboard/signup/company")}  style={{"marginLeft":"10px"}}><Image
+            height="12px"
+            src="/assets/icons/green-arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          />Back</GhostButton>
+        <Button onClick={submit} disabled={!form.designation || !form.phoneNumber} style={{marginLeft:"58rem",marginTop:"-1.5px"}}>Next <Image
             height="12px"
             src="/assets/icons/arrow.png"
             alt="icon"

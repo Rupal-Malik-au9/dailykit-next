@@ -12,16 +12,23 @@ import {
    CardElement,
 } from '@stripe/react-stripe-js'
 import styled from 'styled-components';
-import { Footer as Foter, H2, H4, Main, GhostButton, Button } from "../../../components/styled";
+import { Footer as Foter, Main,} from "../../../components/styled";
 import Footer from "../../../components/Footer";
+import {Loader} from "../../../components";
+import axios from 'axios';
 
 
 export const PaymentForm = () => {
    const { user } = useAuth();
    const [intent, setIntent] = React.useState(null)
-   
+   console.log( process.browser && `${window._env_.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
+   const stripePromise = loadStripe(
+      process.browser && `${window._env_.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
+   );
+console.log(stripePromise)
+
    // stripeCustomerId and organization for intent
-   const {data}=useQuery(ORGANIZATION_ADMINS,  {
+   const {data,loading}=useQuery(ORGANIZATION_ADMINS,  {
       variables:{
           where: {
          email:{"_eq": user.email}
@@ -34,43 +41,40 @@ export const PaymentForm = () => {
           console.log(error);
         },
     })
-    const stripeCustomerId=data?.organizationAdmins[0].stripeCustomerId
-    const organization=data?.organizationAdmins[0].organization
-
-
-   // intent created
+    
    React.useEffect(() => {
-      if (stripeCustomerId) {
+      if (!loading) {
+         if(Object.keys(data).length>0)
          ; (async () => {
-            const intent = await createSetupIntent(
-               stripeCustomerId,
-               organization
-            )
+            console.log(data)
+            const stripeCustomerId=data?.organizationAdmins[0]?.stripeCustomerId
+            const intent = await createSetupIntent(stripeCustomerId)
+            console.log(intent)
             setIntent(intent)
+            
          })()
       }
-   }, [user, organization])
+   }, [loading,data])
 
-   const createSetupIntent = async (customer, organization = {}) => {
+   const createSetupIntent = async (customer) => {
       try {
-         let stripeAccountId = null
-         if (
-            organization?.stripeAccountType === 'standard' &&
-            organization?.stripeAccountId
-         ) {
-            stripeAccountId = organization?.stripeAccountId
-         }
-         const URL = `${process.browser}/api/setup-intent`
-         const { data } = await axios.post(URL, { customer, stripeAccountId })
+         console.log({customer})
+         if(customer){
+         console.log({customer})
+         const ORIGIN=process.browser && `${window._env_.DAILYKEY_URL}`
+         const URL = 'https://dailykey.ngrok.io/api/setup-intent'
+         const { data } = await axios.post(URL, { customer })
+         console.log({data})
          return data.data
+         }
       } catch (error) {
          return error
       }
    }
-
+  
    const [createPaymentMethod] = useMutation(UPDATE_ORGANIZATION_ADMINS_BY_STRIPE_PAYMENT_METHOD_ID, {
       onCompleted: () => {
-         alert("Payment method created")
+         console.log("Payment method created")
       },
       onError: error => {
          console.error(error)
@@ -79,25 +83,25 @@ export const PaymentForm = () => {
 
    const handleResult = async ({ setupIntent }) => {
       try {
-         if (setupIntent.status === 'succeeded') {
-            const ORIGIN = isClient ? `${process.browser}` : ''
-            let URL = `${ORIGIN}/api/payment-method/${setupIntent.payment_method}`
-            if (
-               organization.stripeAccountType === 'standard' &&
-               organization.stripeAccountId
-            ) {
-               URL += `?accountId=${organization.stripeAccountId}`
-            }
-            const { data: { success, data = {} } = {} } = await axios.get(URL)
-
-            if (success) {
+         console.log({setupIntent})
+         // if (setupIntent.status === 'succeeded') {
+         //    let URL = `https://dailykey.ngrok.io/api/payment-method/${setupIntent.payment_method}`
+         //    if (
+         //       stripeCustomerId
+         //    ) {
+         //       URL += `?accountId=${stripeCustomerId}`
+         //    }
+         //    console.log(URL)
+         //    const { data: { success, data = {} } = {} } = await axios.get(URL)
+         //    console.log(data)
+            if (Object.keys(setupIntent).length > 0 && setupIntent.status === 'succeeded') {
                await createPaymentMethod({
                   variables: {
                      where: {
-                        email: { "_eq": user.organization.email }
+                        email: { "_eq": user.email }
                      },
                      _set: {
-                        stripePaymentMethodId: paymentMethod.id
+                        stripePaymentMethodId: setupIntent.payment_method
                      },
                   }
                })
@@ -105,17 +109,15 @@ export const PaymentForm = () => {
             } else {
                throw Error("Couldn't complete card setup, please try again")
             }
-         } else {
-            throw Error("Couldn't complete card setup, please try again")
-         }
-      } catch (error) { }
+         // } else {
+         //    throw Error("Couldn't complete card setup, please try again")
+         // }
+      } catch (error) {console.error(error)} 
    }
 
-   const stripePromise = loadStripe(
-      process.browser && `${window._env_.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
-   );
+  
 
-   if (!intent) return "loading"
+   if (!intent) return 'intent-undefined'
    return (
       <div>
          <Elements stripe={stripePromise}>
@@ -158,7 +160,7 @@ const CardSetupForm = ({ intent, handleResult }) => {
       if (!stripe || !elements) {
          return
       }
-
+      console.log(intent)
       const result = await stripe.confirmCardSetup(intent.client_secret, {
          payment_method: {
             card: elements.getElement(CardElement),
@@ -167,7 +169,7 @@ const CardSetupForm = ({ intent, handleResult }) => {
             },
          },
       })
-
+      console.log(result)
       if (result.error) {
          setSubmitting(false)
          setError(result.error.message)
@@ -275,6 +277,8 @@ query organizations($where: organization_organizationAdmin_bool_exp = {}) {
      organization {
        id
        adminSecret
+       stripeAccountType 
+       stripeAccountId
      }
    }
  }`

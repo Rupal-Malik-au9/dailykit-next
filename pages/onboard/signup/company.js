@@ -239,7 +239,7 @@ export default function Company() {
         </Main>
         <Foter>
         <Confetti active={onProps} config={config} />
-          <Button onClick={save} disabled={!form.company} style={{ "fontWeight": "bold",marginTop:"-100px" }}>Next &nbsp;
+          <Button onClick={save} disabled={!form.company} style={{ "fontWeight": "bold",marginTop:"-80px" }}>Next &nbsp;
             <Image
             height="12px"
             src="/assets/icons/arrow.png"

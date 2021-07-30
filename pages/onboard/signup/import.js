@@ -167,7 +167,13 @@ export default function Import() {
             </section>
           </Main>
           <Foter style={{justifyContent:"space-between",fontWeight: "bold",marginTop:"-80px"}}>
-            <GhostButton onClick={back}  style={{"marginLeft":"10px"}}>Back</GhostButton>
+            <GhostButton onClick={back}  style={{"marginLeft":"10px"}}><Image
+            height="12px"
+            src="/assets/icons/green-arrow.png"
+            alt="icon"
+            width="16px"
+            className="ml-4"
+          />Back</GhostButton>
             <section className="space-x-3" style={{marginTop:"-9px"}}>
               <button onClick={next} className="btn-style-twelve bold">
                 Skip this step?

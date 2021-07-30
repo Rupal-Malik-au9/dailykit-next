@@ -33,7 +33,6 @@ export default function Company() {
   const [update] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
       history.push("/onboard/signup/about-yourself");
-      console.log(history.push("/onboard/signup/about-yourself"))
     },
     onError: (error) => {
       console.log(error);
@@ -93,7 +92,7 @@ export default function Company() {
     });
     setOnProps(true)
   };
-{console.log(user)}
+
   return (
     <>
       <Layout>

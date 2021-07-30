@@ -9,8 +9,8 @@ export const Styles = {
   `,
    Auth: styled.button`
    border-radius: 0.25rem;
-   padding-left: 0.75rem;
-   padding-right: 0.75rem;
+   padding-left: 1.75rem;
+   padding-right: 1.75rem;
    height: 2rem;
 
 

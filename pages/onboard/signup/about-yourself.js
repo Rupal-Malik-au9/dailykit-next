@@ -1,6 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 import Image from "next/image";
 import Layout  from "../../../components/Layout";
 import { useAuth } from "../../../store/auth";
@@ -9,15 +10,31 @@ import { UPDATE_USER, UPDATE_ORGANIZATION } from "../../../graphql";
 import { Footer as Foter, Main, Field, Label, Form,GhostButton, Button, H2, Input } from "../../../components/styled";
 import Footer from "../../../components/Footer";
 import Confetti from 'react-dom-confetti';
+var validator = require('validator');
+
 export default function AboutYourself() {
   const { user } = useAuth();
   const history = useRouter();
+  const [error, setError] = React.useState("");
+  const [error2, setError2] = React.useState("");
   const [onProps,setOnProps] = React.useState(false);
+
   const [form, setForm] = React.useState({
     phoneNumber: "",
     designation: "",
   });
- 
+    // for validation
+    React.useEffect(() => {
+      if(form.phoneNumber && !validator.isMobilePhone(form.phoneNumber)) {
+        return setError2("Please enter a correct phone Number"); 
+      }
+   if(form.designation && !validator.isAlpha(validator.blacklist(form.designation, ' '))){
+      return setError2("Enter your correct designation");
+    }
+    else { 
+      return setError2("");
+    }
+  })
   const [update_org] = useMutation(UPDATE_ORGANIZATION, {
     onCompleted: () => {
       history.push("/onboard/signup/hosting");
@@ -122,6 +139,12 @@ export default function AboutYourself() {
                   placeholder="Enter your phone number"
                 />
               </Field>
+              {error && (
+            <Error>{error}</Error>
+          )}
+          {error2 && (
+            <Error>{error2}</Error>
+          )}
             </Form>
           </section>
         </div>
@@ -148,3 +171,11 @@ export default function AboutYourself() {
  </>
   );
 };
+
+const Error=styled.span`
+justify-self: start;
+display: block;
+--tw-text-opacity: 1;
+color: rgba(239, 68, 68, var(--tw-text-opacity));
+margin-top: 0.5rem;
+`

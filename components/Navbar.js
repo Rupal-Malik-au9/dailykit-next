@@ -6,14 +6,45 @@ import { Styles } from "../components/sections/Header/styled";
 
 export const Navbar = () => {
   const location = useRouter();
-  const router=useRouter()
   const { user, authenticated, logout } = useAuth();
+ 
+
+// const checkStatus=()=> {
+//   console.log(user?.organization)
+//   if (user?.organization?.onboardStatus) {
+//     switch (user?.organization?.onboardStatus) {
+//        case 'COMPANY':
+//           location.push('/onboard/signup/company')
+//           break
+//        case 'ABOUT_YOURSELF':
+//           location.push('/onboard/signup/about-yourself')
+//           break
+//        case 'HOSTING':
+//           location.push('/onboard/signup/hosting')
+//           break
+//        case 'CARD_DETAILS':
+//            location.push('/onboard/signup/card-details')
+//            break
+//        case 'SUPPORT':
+//           location.push('/onboard/signup/support')
+//           break
+//        case 'IMPORT':
+//           location.push('/onboard/signup/import')
+//           break
+//        case 'SETUP_DOMAIN' ||'FINISH_SETUP':
+//           location.push('/onboard/signup/finish-setup')
+//           break
+//        default:
+//           break
+//     }
+//  }
+// }
   return (
     <nav
       className="navbar fixed-top navbar-expand-lg navbar-light bg-light"
       style={{
         border: "0px solid black",
-        boxShadow: "5px 5px 5px #888888",
+        boxShadow: !location.pathname.includes("onboard") ?"0px 5px 20px rgba(0, 0, 0, 0.1)":"0px 5px 20px rgba(255, 255, 255, 0.3)",
       }}
     >
       <div className="container-fluid mt-2 mb-2">
@@ -36,7 +67,7 @@ export const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        {!location.pathname.includes("onboard") ?
+        {!location.pathname.includes("onboard") ? (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav special-styling me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown hover">
@@ -522,114 +553,125 @@ export const Navbar = () => {
                   Schedule Demo
                 </a>
               </li>
-              {!authenticated ? (
-                <li className="nav-item">
-                  {!location.pathname.includes("login") && (
-                    <a
+              {/* *******authenticated and not in onboard pages so 1signup/login 2)complete your signup 3)Logout */}
+              <li className="nav-item">
+                {authenticated ? (<>
+                  {user?.organization?.onboardStatus != "FINISH_SETUP" ? (
+                   <a
+                   className="nav-link"
+                   style={{
+                     background: "#8ac03b",
+                     color: "white",
+                     borderRadius: "7px",
+                     fontWeight: "600",
+                     marginLeft: "0.7rem",
+                     paddingLeft: "20px",
+                     paddingRight: "20px",
+                     fontSize: "14px",
+                     cursor: "pointer"
+                   }}
+                   onClick={()=>location.push('/onboard/signup/company')}>
+                  Complete your Signup
+                 </a>) : (<a
                       className="nav-link"
                       style={{
-                        background: "#8ac03b",
-                        color: "white",
-                        borderRadius: "7px",
-                        fontWeight: "600",
-                        marginLeft: "0.7rem",
-                        paddingLeft: "20px",
-                        paddingRight: "20px",
-                        fontSize: "14px",
-                        cursor: "pointer"
-                      }}
-                      onClick={() => location.push("/onboard/signup")}>
-                      Signup/Login
-                    </a>)}
-                </li>
-              ) : (
-                user?.organization?.onboardStatus && user.organization.onboardStatus != "FINISH_SETUP" ? (
-                  <li className="nav-item">
-                    <a className="nav-link"
-                      style={{
-                        background: "#8ac03b",
-                        color: "white",
-                        borderRadius: "7px",
-                        fontWeight: "600",
-                        marginLeft: "0.7rem",
-                        paddingLeft: "20px",
-                        paddingRight: "20px",
-                        fontSize: "14px",
-                        cursor: "pointer"
-                      }}
-                      onClick={() => location.push("/onboard/signup/company")}
-                    >
-                      Complete your Signup
-                    </a>
-                  </li>) : (
-                  <li className="nav-item">
-                    <a className="nav-link"
-                      style={{
-                        background: "#8ac03b",
-                        color: "white",
-                        borderRadius: "7px",
-                        fontWeight: "600",
-                        marginLeft: "0.7rem",
-                        paddingLeft: "20px",
-                        paddingRight: "20px",
-                        fontSize: "14px",
-                        cursor: "pointer"
+                          background: "#8ac03b",
+                          color: "white",
+                          borderRadius: "7px",
+                          fontWeight: "600",
+                          marginLeft: "0.7rem",
+                          paddingLeft: "20px",
+                          paddingRight: "20px",
+                          fontSize: "14px",
+                          cursor: "pointer"
                       }}
                       onClick={logout}
                     >
                       Logout
-                    </a>
-                  </li>)
+                    </a>)
+                  }</>) : (<a
+                    className="nav-link"
+                    style={{
+                      background: "#8ac03b",
+                      color: "white",
+                      borderRadius: "7px",
+                      fontWeight: "600",
+                      marginLeft: "0.7rem",
+                      paddingLeft: "20px",
+                      paddingRight: "20px",
+                      fontSize: "14px",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => location.push("/onboard/signup")}
+                  >
+                    Signup/Login
+                  </a>
+                )}
+              </li>
+              {/*authenticated and NOT IN ONBOARD PAGES so 1signup/login 2)complete your signup 3)Logout  ********/}
+            </ul>
+          </div>
+
+
+
+        ) : (
+
+
+          // ONBOARD PAGES
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav special-styling me-auto mb-2 mb-lg-0">
+              {/* if not authenticated and ONBOARD PAGES then 2 condtion 1)login or 2) signup */}
+              {!authenticated ? (
+
+                <li className="nav-item">
+                  <section className="username">
+                  {!location.pathname.includes("login") ? (
+                        <Styles.Auth className="nunito solid text-white border-0" style={{ "marginLeft": "6.5rem",fontWeight:"bold",fontSize:"1rem" }}
+                         onClick={() => location.push("/onboard/login")}>
+                            Login
+                            </Styles.Auth>
+                  ) : (
+                    <Styles.Auth className="nunito solid text-white border-0" style={{marginLeft: "6.5rem",fontWeight:"bold",fontSize:"1rem" }}
+                         onClick={() => location.push("/onboard/signup")}>
+                           Signup
+                            </Styles.Auth>)}
+                  </section>
+                </li>
+              ) : (
+
+                // {/* // if authenticated then 2 condtion 1)logout or 2)go to dasboard */}
+                <li className="nav-item">
+                  <section className="username">
+                    <span
+                      title={user?.name} style={{ fontSize: "16px" }}
+                      className="nunito rounded-full w-8 h-8 text-sm text-black cursor-default"
+                    >
+                      Hello, {user?.firstName}
+                      {user?.lastName}
+                    </span>
+                    {user?.organization.onboardStatus == "FINISH_SETUP" ? (
+                      <Styles.Auth
+                        className="nunito solid text-white border-0"
+                        style={{ "marginLeft": "0.5rem" }}
+                        onClick={() => location.push("/")}
+                      >
+                        Go to dashboard
+                      </Styles.Auth>
+                    ) : (<Styles.Auth onClick={logout} className="ghost text-white text-uppercase border-0">
+                      Logout
+                    </Styles.Auth>)}
+
+
+                  </section>
+
+                </li>
               )}
             </ul>
           </div>
-          : (<div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav special-styling me-auto mb-2 mb-lg-0">
-              {authenticated ? (
-                <section className="username">
-                  <span
-                    title={user?.name} style={{ fontSize: "16px" }}
-                    className="nunito rounded-full w-8 h-8 text-sm text-black cursor-default"
-                  >
-                    Hello, {user?.firstName}
-                    {user?.lastName}
-                  </span>
-                  {user?.organization.onboardStatus == "FINISH_SETUP" ? (
-                    <Styles.Auth
-                      className="nunito solid text-white border-0"
-                      style={{ "marginLeft": "0.5rem" }}
-                      onClick={() => router.push("/")}
-                    >
-                      Go to dashboard
-                    </Styles.Auth>
-                  ) : (<Styles.Auth onClick={logout} className="ghost text-white text-uppercase border-0">
-                    Logout
-                  </Styles.Auth>)}
+        )}
 
-
-                </section>
-              ) : (
-                <section className="username-2">
-                  {!location.pathname.includes("login") && (
-                    <Styles.Auth
-                      className="nunito solid text-white text-uppercase border-0"
-                      onClick={() => location.push("/onboard/login")}
-                    >
-                      Login
-                    </Styles.Auth>
-                  )}
-                  {!location.pathname.includes("signup") && (
-                    <Styles.Auth
-                      className="nunito solid text-white text-uppercase border-0"
-                      onClick={() => router.push("/onboard/signup")}
-                    >
-                      Sign Up
-                    </Styles.Auth>
-                  )}
-                </section>
-              )}
-            </ul></div>
-          )}</div>
+      </div>
     </nav>
   );
 }

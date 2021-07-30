@@ -59,7 +59,7 @@ export const Main = styled.main`
    font-family: "Nunito", sans-serif;
    overflow: auto;
    background: #ffffff;
-   margin: 16px 0px 0 16px;
+   margin: 13px 0px 0 16px;
    height:90vh;
 `
 

@@ -5,6 +5,7 @@ import Head from "next/head";
 import React from 'react';
 import { ApolloProvider } from '../lib/apollo';
 import { AuthProvider } from '../store/auth';
+var validator = require('validator');
 function MyApp({ Component, pageProps }) {
   return (
     <>

@@ -9,7 +9,10 @@ import { useAuth } from "../../../store/auth";
 import { ADMIN_EXISTS } from "../../../graphql";
 import  Footer from "../../../components/Footer";
 import Layout  from "../../../components/Layout";
+
 var validator = require('validator');
+
+
 export default function Signup() {
   const router = useRouter();
   const { dispatch } = useAuth();
@@ -102,7 +105,7 @@ export default function Signup() {
  <Layout>
       <Main>
         <Panel style={{fontWeight:"bold"}}>
-          <h2 className="text-2xl" style={{"marginTop":"23px",fontWeight:"bold"}}>Register</h2>
+          <h2 className="text-2xl" style={{"marginTop":"20px",fontWeight:"bold"}}>Register</h2>
           <Field style={{"marginTop":"0.5rem"}}>
             <Label htmlFor="firstName">First Name</Label>
             <Input

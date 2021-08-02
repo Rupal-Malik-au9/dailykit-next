@@ -1,55 +1,28 @@
-import { GraphQLClient } from 'graphql-request';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-export const client = new GraphQLClient(process.env.HASURA_KEYCLOAK_URL, {
-   headers: {
-      'x-hasura-admin-secret': process.env.KEYCLOAK_ADMIN_SECRET
-   }
-})
+const create = async (req, res) => {
+  try {
+     const { customer } = req.body
+     const response = await stripe.setupIntents.create({
+        customer,
+     })
 
-export default async function createPaymentId(req, res) {
-  if (req.method === 'POST') {
-    try {
-        // const {email} = req.body.event.data.new
-        const{number1,number2,number3,number4,exp_month,exp_year,cvc,email}=req.body
-        const number=number1+""+number2+""+number3+""+number4
-        console.log(number,exp_month,exp_year,cvc,email)
-        const paymentMethod = await stripe.paymentMethods.create({
-          type: 'card',
-          card: {
-            number: number,
-            exp_month: exp_month,
-            exp_year: exp_year,
-            cvc: cvc,
-          },
-        });
-      const { updateOrganizationAdmins } = client.request(
-        UPDATE_ORGANIZATION_ADMINS_BY_STRIPE_PAYMENT_METHOD_ID,
-        {
-          where: {
-            email:{"_eq": email}
-          },
-          _set: {
-            stripePaymentMethodId: paymentMethod.id
-          },
-        }
-      )
-        return res.status(200).redirect(`${req.headers.origin}/onboard/signup/support?carddetails=true`)
-      } catch (err) {
-        res.status(500).json({ statusCode: 500, message: err.message });
-      }
+     if (isObjectValid(response)) {
+        return res.json({ success: true, data: response })
+     } else {
+        throw Error('Didnt get any response from Stripe!')
+     }
+  } catch (error) {
+     return res.json({ success: false, error: error.message })
   }
 }
 
-export const UPDATE_ORGANIZATION_ADMINS_BY_STRIPE_PAYMENT_METHOD_ID= `
-mutation updateOrganizationAdmins($_set: organization_organizationAdmin_set_input={}, $where: organization_organizationAdmin_bool_exp!) {
-  updateOrganizationAdmins(where: $where, _set: $_set) {
-    returning {
-      id
-      stripePaymentMethodId
-    }
+export const isObjectValid = obj => {
+  if (Object.keys(obj).length > 0 && obj.constructor === Object) {
+     return true
   }
+  return false
 }
-`
+export default create;
 
 

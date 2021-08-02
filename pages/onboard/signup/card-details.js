@@ -58,13 +58,9 @@ console.log(stripePromise)
 
    const createSetupIntent = async (customer) => {
       try {
-         console.log({customer})
          if(customer){
-         console.log({customer})
-         const ORIGIN=process.browser && `${window._env_.DAILYKEY_URL}`
-         const URL = 'https://dailykey.ngrok.io/api/setup-intent'
-         const { data } = await axios.post(URL, { customer })
-         console.log({data})
+         const { data } = await axios.post('/api/setup-intent', { customer })
+         console.log('✨✨',{data})
          return data.data
          }
       } catch (error) {
@@ -83,17 +79,6 @@ console.log(stripePromise)
 
    const handleResult = async ({ setupIntent }) => {
       try {
-         console.log({setupIntent})
-         // if (setupIntent.status === 'succeeded') {
-         //    let URL = `https://dailykey.ngrok.io/api/payment-method/${setupIntent.payment_method}`
-         //    if (
-         //       stripeCustomerId
-         //    ) {
-         //       URL += `?accountId=${stripeCustomerId}`
-         //    }
-         //    console.log(URL)
-         //    const { data: { success, data = {} } = {} } = await axios.get(URL)
-         //    console.log(data)
             if (Object.keys(setupIntent).length > 0 && setupIntent.status === 'succeeded') {
                await createPaymentMethod({
                   variables: {
@@ -117,7 +102,7 @@ console.log(stripePromise)
 
   
 
-   if (!intent) return 'intent-undefined'
+   if (!intent) return  <Loader />
    return (
       <div>
          <Elements stripe={stripePromise}>
@@ -175,6 +160,7 @@ const CardSetupForm = ({ intent, handleResult }) => {
          setError(result.error.message)
       } else {
          handleResult(result)
+         nextPage()
       }
    }
    
@@ -183,7 +169,7 @@ const CardSetupForm = ({ intent, handleResult }) => {
          variables: {
             id: user.organization.id,
             _set: {
-               onboardStatus: "SUPPORT",
+               onboardStatus: "SETUP_DOMAIN",
             },
          },
       });
@@ -223,7 +209,6 @@ const CardSetupForm = ({ intent, handleResult }) => {
                type="submit"
                className="mt-2 mb-2"
                style={{ "marginLeft": "28.7%" }}
-               onClick={nextPage}
             >
                {submitting ? 'Saving...' : 'Save'}
             </Submit>

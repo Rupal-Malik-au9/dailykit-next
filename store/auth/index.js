@@ -88,12 +88,12 @@ export const AuthProvider = ({ children }) => {
                  case 'CARD_DETAILS':
                      Router.push('/onboard/signup/card-details')
                      break
-                 case 'SUPPORT':
-                    Router.push('/onboard/signup/support')
-                    break
-                 case 'IMPORT':
-                    Router.push('/onboard/signup/import')
-                    break
+               //   case 'SUPPORT':
+               //      Router.push('/onboard/signup/support')
+               //      break
+               //   case 'IMPORT':
+               //      Router.push('/onboard/signup/import')
+               //      break
                  case 'SETUP_DOMAIN':
                     Router.push('/onboard/signup/finish-setup')
                     break
@@ -153,16 +153,16 @@ export const AuthProvider = ({ children }) => {
          dispatch({ type: 'CHANGE_STEP', payload: 5 })
          break
       }
-        case '/onboard/signup/support': {
-           dispatch({ type: 'CHANGE_STEP', payload: 6 })
-           break
-        }
-        case '/onboard/signup/import': {
-           dispatch({ type: 'CHANGE_STEP', payload: 7 })
-           break
-        }
+      //   case '/onboard/signup/support': {
+      //      dispatch({ type: 'CHANGE_STEP', payload: 6 })
+      //      break
+      //   }
+      //   case '/onboard/signup/import': {
+      //      dispatch({ type: 'CHANGE_STEP', payload: 7 })
+      //      break
+      //   }
         case '/onboard/signup/finish-setup': {
-           dispatch({ type: 'CHANGE_STEP', payload: 8 })
+           dispatch({ type: 'CHANGE_STEP', payload: 6 })
            break
         }
      }

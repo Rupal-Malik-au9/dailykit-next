@@ -34,7 +34,7 @@ export default class pricepage extends PureComponent {
         <PriceHeading heading={"Best pricing"} />
         <div className="container">
           <div className="row ">
-            <div className="col-md-3 col-xs-10">
+            <div className="col-md-6 col-xs-10">
               <PriceColumnLabel
                 onlinestore={[
                   ["onDemandStore"],
@@ -121,7 +121,7 @@ export default class pricepage extends PureComponent {
                 ]}
               />
             </div>
-            <div className="col-md-3 col-xs-10">
+            <div className="col-md-6 col-xs-10">
               <PriceColumn
                 dataAccount="3161173:g2o5g2c3i8"
                 dataForm={"4175704:a4w7j9"}
@@ -217,7 +217,7 @@ export default class pricepage extends PureComponent {
                 ]}
               />
             </div>
-            <div className="col-md-3 col-xs-10">
+            {/* <div className="col-md-3 col-xs-10">
               <PriceColumn
                 recommended
                 dataAccount="3161173:g2o5g2c3i8"
@@ -411,8 +411,8 @@ export default class pricepage extends PureComponent {
                   ["Transaction Fees", "1%"],
                 ]}
               />
-            </div>
-          </div>
+            </div>*/}
+          </div> 
         </div>
 
         <Footer />

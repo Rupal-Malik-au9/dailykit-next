@@ -40,7 +40,6 @@ export default function Hosting() {
                   </Radio.Option>
                 </Radio>
                 <div className="nunito pricingsection2">
-              <h3 className="price-heading">Choose your plan</h3>
               </div>
                 {option === "cloud" ? (
                   <PricingSection1
@@ -58,29 +57,29 @@ export default function Hosting() {
                         resetOnSelect2:setOnSelect2,
                         resetOnSelect3:setOnSelect3,
                       },
-                      {
-                        name: "Premium",
-                        price: "$ 79",
-                        price_id: "price_1JCJfGGKMRh0bTaiuqXZltFb",
-                        number: '4242424242424242',
-                        email: user.email,
-                        box_shadow: '1px 1px 2px rgb(255 255 255 / 30%),-1px -1px 2px rgb(223 223 222 / 50%),inset -5px 5px 10px rgb(223 223 222 / 20%),inset 5px -5px 10px rgb(223 223 222 / 20%),inset -5px -5px 10px rgb(255 255 255 / 90%),inset 5px 5px 13px rgb(223 223 222 / 90%)',
-                        onSelect:onSelect2,
-                        setOnSelect:setOnSelect2,
-                        resetOnSelect2:setOnSelect1,
-                        resetOnSelect3:setOnSelect3,
-                      },
-                      {
-                        name: "Professional",
-                        price: "$ 499",
-                        price_id: "price_1JCJffGKMRh0bTai3tYKfX9n",
-                        email: user.email,
-                        box_shadow: '1px 1px 2px rgb(255 255 255 / 30%),-1px -1px 2px rgb(223 223 222 / 50%),inset -5px 5px 10px rgb(223 223 222 / 20%),inset 5px -5px 10px rgb(223 223 222 / 20%),inset -5px -5px 10px rgb(255 255 255 / 90%),inset 5px 5px 13px rgb(223 223 222 / 90%)',
-                        onSelect:onSelect3,
-                        setOnSelect:setOnSelect3,
-                        resetOnSelect2:setOnSelect1,
-                        resetOnSelect3:setOnSelect2,
-                      },
+                      // {
+                      //   name: "Premium",
+                      //   price: "$ 79",
+                      //   price_id: "price_1JCJfGGKMRh0bTaiuqXZltFb",
+                      //   number: '4242424242424242',
+                      //   email: user.email,
+                      //   box_shadow: '1px 1px 2px rgb(255 255 255 / 30%),-1px -1px 2px rgb(223 223 222 / 50%),inset -5px 5px 10px rgb(223 223 222 / 20%),inset 5px -5px 10px rgb(223 223 222 / 20%),inset -5px -5px 10px rgb(255 255 255 / 90%),inset 5px 5px 13px rgb(223 223 222 / 90%)',
+                      //   onSelect:onSelect2,
+                      //   setOnSelect:setOnSelect2,
+                      //   resetOnSelect2:setOnSelect1,
+                      //   resetOnSelect3:setOnSelect3,
+                      // },
+                      // {
+                      //   name: "Professional",
+                      //   price: "$ 499",
+                      //   price_id: "price_1JCJffGKMRh0bTai3tYKfX9n",
+                      //   email: user.email,
+                      //   box_shadow: '1px 1px 2px rgb(255 255 255 / 30%),-1px -1px 2px rgb(223 223 222 / 50%),inset -5px 5px 10px rgb(223 223 222 / 20%),inset 5px -5px 10px rgb(223 223 222 / 20%),inset -5px -5px 10px rgb(255 255 255 / 90%),inset 5px 5px 13px rgb(223 223 222 / 90%)',
+                      //   onSelect:onSelect3,
+                      //   setOnSelect:setOnSelect3,
+                      //   resetOnSelect2:setOnSelect1,
+                      //   resetOnSelect3:setOnSelect2,
+                      // },
                     ]}
                   />) : (
                   <>

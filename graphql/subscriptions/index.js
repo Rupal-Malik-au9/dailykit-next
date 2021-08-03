@@ -27,7 +27,15 @@ export const ADMIN_EXISTS = gql`
       }
    }
 `
-
+export const ADMIN_URL_EXISTS = gql`
+query organization_url($where: organization_organizationAdmin_bool_exp!) {
+   url: organizationAdmins(where: $where) {
+     organization {
+       organizationUrl
+     }
+   }
+}
+`
 export const USER = gql`
    subscription admins($where: organization_organizationAdmin_bool_exp) {
       admins: organizationAdmins(where: $where) {

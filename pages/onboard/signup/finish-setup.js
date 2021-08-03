@@ -1,11 +1,13 @@
 import React from "react";
-import { useMutation } from "@apollo/client";
+import styled from "styled-components";
+import { useMutation,useLazyQuery } from "@apollo/client";
 import { Gif } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 
 import Layout  from "../../../components/Layout";
 import { Button, H2, Main } from "../../../components/styled";
 import { useAuth } from "../../../store/auth";
+import { ADMIN_URL_EXISTS } from "../../../graphql";
 import VerifyEmailBanner from "../../../components/VerifyEmailBanner";
 import { UPDATE_ORGANIZATION } from "../../../graphql";
 import Footer from "../../../components/Footer";
@@ -69,6 +71,7 @@ const gif_ids = {
 
 export default function FinishSetup() {
   const { user } = useAuth();
+
   
   return (
     <div hidesteps={user?.organization?.onboardStatus === "FINISH_SETUP"}>
@@ -102,6 +105,25 @@ const Installation = () => {
   const { user } = useAuth();
   const [name, setName] = React.useState("");
   const [onProps,setOnProps] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const [check_url] = useLazyQuery(ADMIN_URL_EXISTS, {
+  
+    onCompleted: ({url}) => {
+      console.log({url})
+      if (url.length > 0) {
+        setError("This url already exists!");
+      } 
+      else {
+        setError(false);
+      }
+    },
+  });
+
+  const handleUrlExists = (value) =>
+    check_url({ variables: { where: {"organization":{"organizationUrl": 
+    {"_eq":value}}}
+}})
+
   const [update, { loading }] = useMutation(UPDATE_ORGANIZATION, {
     onError: (error) => {
       console.log(error);
@@ -139,19 +161,25 @@ const Installation = () => {
             value={name}
             autoComplete="off"
             placeholder="Enter your subdomain"
-            onChange={(e) => setName(e.target.value.trim())}
+            onChange={(e) => {setName(e.target.value.trim()); handleUrlExists(e.target.value.trim()+".dailykit.org")}}
+            // onBlur={(e) => }
             className="input-border h-10 border-b-2 border-green-400 focus:border-green-600"
           /><br/>
           <span className="text-left text-green-500">{name}.dailykit.org</span>
+          
           <div style={{marginLeft:"10rem"}}><Confetti active={ onProps } config={ config }/></div>
+          
         </section>
-        
+
         <Button
           onClick={submit}
-          disabled={!name || !user?.keycloak?.email_verified || loading}
+          disabled={!name || loading || !user?.keycloak?.email_verified || error}
         >
           {loading ? "Saving" : "Save"}
         </Button> 
+        {error && (
+            <Error>{error}</Error>
+          )}
       </div>
     </div>
   );
@@ -256,3 +284,13 @@ const RenderGif = ({ gifs }) => {
     )
   );
 };
+
+const Error=styled.span`
+justify-self: start;
+display: block;
+--tw-text-opacity: 1;
+color: rgba(239, 68, 68, var(--tw-text-opacity));
+margin-top: 0.5rem;
+font-weight:bold;
+font-family:nunito;
+`

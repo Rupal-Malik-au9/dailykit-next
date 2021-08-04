@@ -47,7 +47,7 @@ export default function Hosting() {
                     marginHeight={"-80px"}
                     offers={[
                       {
-                        name: "Standard.",
+                        name: "Cloud Hosting",
                         price: "$ 29",
                         price_id: "price_1JCJetGKMRh0bTaia6mIjYwC",
                         email: user.email,
